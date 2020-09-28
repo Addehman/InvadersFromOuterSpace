@@ -5,15 +5,20 @@ class Enemy
 	color playerColor = color (255, 205, 0);
 	Enemy ()
 	{
+		position = new PVector ();
 		
 
 	}
 void draw ()
 {
 	fill (playerColor);
-	noStroke();
-	star ();
+	stroke(255);
 
+	pushMatrix();
+  	translate(position.x, position.y);
+  	rotate(frameCount / -100.0);
+  	star(0, 0, 30, 70, 5); 
+  	popMatrix();
 
 }
 
