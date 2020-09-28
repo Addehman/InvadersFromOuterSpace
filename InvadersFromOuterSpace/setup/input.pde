@@ -1,19 +1,22 @@
 boolean moveLeft = false, moveRight = false;
-// Bullet bullet;
+Bullet bullet;
 
 PVector inputVector = new PVector();
 
+
+
 void keyPressed()
 {
-    if (keyCode == LEFT || key == 'a')
-    moveLeft = true;
-  	else if (keyCode == RIGHT || key == 'd')
+   if (keyCode == LEFT || key == 'a')
+   	moveLeft = true;
+
+   else if (keyCode == RIGHT || key == 'd')
   	moveRight = true;
 	
   if (key == ' ')
   {
- // 	bullet = new Bullet ();
-
+  	bullet = new Bullet();
+  	bullet.draw();
   }
   if (key == ESC)
   {
@@ -26,7 +29,7 @@ void keyReleased ()
   if (keyCode == LEFT || key == 'a')
     moveLeft = false;
   else if (keyCode == RIGHT || key == 'd')
-  moveRight = false;
+  	moveRight = false;
 }
 
 PVector input()

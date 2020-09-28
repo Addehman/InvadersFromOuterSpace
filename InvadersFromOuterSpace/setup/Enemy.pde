@@ -6,6 +6,7 @@ class Enemy
 	Enemy ()
 	{
 		position = new PVector ();
+		velocity = new PVector();
 		
 
 	}

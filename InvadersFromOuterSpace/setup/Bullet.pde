@@ -1,21 +1,24 @@
 class Bullet
 {
 	PVector position, velocity; //Bullet position
-	int bulletSizeX = 5, bulletSizeY = 10;
-	color bulletColor = color(0, 255, 0);
 
-	float bulletSpeed = 10;
+	int bulletSizeX = 10, bulletSizeY = 15;
+	color bulletColor;
 
-	Player player;
+	float bulletSpeed = 20;
 
-	Bullet()
+	Player player = new Player();
+
+	public Bullet()
 	{
 		position = new PVector();
 		velocity = new PVector();
 
-		//
-		position.x = player.position.x;
-		position.y = player.position.y;
+		bulletColor = color(0, 255, 0);
+
+		// Starting position from player
+		//position.x = player.position.x;
+		//position.y = player.position.y;
 	}
 
 	public Bullet(float x, float y)
@@ -29,12 +32,18 @@ class Bullet
 	void update()
 	{
 		// Update bullet position
-		position.y += bulletSpeed;
+		position.y -= bulletSpeed;
 	}
 
 	void draw()
 	{
+		//translate(position.x, position.y);
 		fill(bulletColor);
-		rect(position.x, position.y, bulletSizeX, bulletSizeY);
+		noStroke();
+		rect(player.position.x, player.position.y, bulletSizeX, bulletSizeY);
+
+		update();
+
+		println("Shooting");
 	}
 }
