@@ -10,7 +10,7 @@ void keyPressed()
   	else if (keyCode == RIGHT || key == 'd')
   	moveRight = true;
 	
-  if (key == SPACE)
+  if (key == ' ')
   {
   	bullet = new Bullet ();
 
