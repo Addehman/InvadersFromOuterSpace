@@ -1,20 +1,32 @@
 class Player
 {
 	PVector position = new PVector(), velocity = new PVector(); // Only need velocity.x for now, so could actually simply be using and int/float
-	float playerSize = 20;
+	float playerSize = 30;
 
 	color playerColor = color(255);
 
-	int playerSpeed = 30;
+	float playerSpeed = 10.0;
 
 	public Player ()
 	{
-		velocity = input();
+		
 	}
 
 	void update()
 	{
+		velocity = input();
+
 		position.x += velocity.x * playerSpeed;
+
+		// Boundaries
+		if (position.x < 0 + playerSize/2)
+		{
+			position.x = 0 + playerSize/2;
+		}
+		else if (position.x > width - playerSize/2)
+		{
+			position.x = width - playerSize/2;
+		}
 	}
 
 	void draw()

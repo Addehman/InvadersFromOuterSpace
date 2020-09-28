@@ -1,0 +1,8 @@
+2020-09-28:
+_Atm I'm trying to get the Bullet to spawn from the player, but its position seems to be set to (0,0) for some unknown reason.
+_I think it might have something to do with the setup of the Bullet class - the constructor with and without arguments, 
+those are to me still rather confusing. For sure there the position needs to be specified somehow. 
+_Then when this works, I believe it's on to make extensions of the Bullet class, instead of using the class directly, 
+so that we can keep shooting the bullets one after another, and not simply be using the same over and over, 
+which can bring the same bullet that was shot back to player(no good). 
+_Need to find out how to destroy the rectangle(Objects) that has reached outside of the screen.
