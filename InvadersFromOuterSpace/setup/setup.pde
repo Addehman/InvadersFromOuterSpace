@@ -1,7 +1,11 @@
 float deltaTime, time, framerateMod = 30;
+
 PFont myFont;
 
 Player player;
+
+Enemy enemy;
+
 
 void setup() 
 {
@@ -14,12 +18,13 @@ void setup()
 
 	//Setting frame rate with a variable
 	frameRate(framerateMod);
-
+  enemy = new Enemy ();
 }
 
 void draw() 
 {
 	background(0, 20, 39);
+  enemy.draw ();
 
 	game();
 
