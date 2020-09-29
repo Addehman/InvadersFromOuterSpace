@@ -6,3 +6,20 @@ _Then when this works, I believe it's on to make extensions of the Bullet class,
 so that we can keep shooting the bullets one after another, and not simply be using the same over and over, 
 which can bring the same bullet that was shot back to player(no good). 
 _Need to find out how to destroy the rectangle(Objects) that has reached outside of the screen.
+
+
+2020-09-29:
+_Can't get the Explosion class to be called into the Setup-file.
+
+_Trying to run with collision, but get Null, probably because the bullet does not exist at start, until we fire.
+
+_Can't get the Enemy-object to move according to the if:s in the Enemy-file, under movement(). 
+- Now I got it to move correctly, however, way too fast - probably due to it being moved every frame, should find a 
+	way to use deltaTime for this instead. 
+- It now does the whole movement() every 2 seconds, but still runs the movement() too fast. 
+- It might also have something to do with that it is the "translate()" that is being moved.
+- Maybe I shouldn't be using a for-loop? maybe just using if:s are better: checking if true or compare a progress-value, 
+	then do until it reaches a limit, from going to right then onto next move, say down, then left, down, right, etc. 
+	Loop like that.
+
+_For-loop for the bullets has a limited ammo, want to have it reset at some point or at least be infinite somehow.

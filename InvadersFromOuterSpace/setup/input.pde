@@ -1,5 +1,6 @@
 boolean moveLeft = false, moveRight = false;
 
+
 PVector inputVector = new PVector();
 
 
@@ -14,8 +15,18 @@ void keyPressed()
 	
   if (key == ' ')
   {
-  	bullet = new Bullet();
-  	bullet.draw();
+  	//Find empty spot in array, create list
+  	
+  	for (int i = 0; i < bullets.length; i++)
+  	{
+  		if (bullets[i] == null)
+  		{
+  			bullets[i] = new Bullet();
+  			bullets[i].position = player.position.copy();
+  			//we are done, break/quit the loop.
+  			break;
+  		}
+  	}
   }
   if (key == ESC)
   {

@@ -4,10 +4,12 @@ class Enemy
 	float enemySize = 15;
 	color playerColor = color (255, 205, 0);
 
+	boolean right = true, down1 = false, left = false, down2 = false;
+
 
 	Enemy ()
 	{
-		position = new PVector ();
+		position = new PVector();
 		velocity = new PVector();
 		startPos = new PVector(width * 0.1, height * 0.1);
 		
@@ -25,7 +27,6 @@ class Enemy
 	  	rotate(frameCount / -100.0);
 	  	star(0, 0, 10, 30, 5); 
 	  	popMatrix();
-
 	}
 
 	void star(float x, float y, float radius1, float radius2, int npoints) 
@@ -46,10 +47,56 @@ class Enemy
 	}
 
 
-void movement ()
-{
-	
+	void movement () 
+	{// not sure if I should be using deltaTime here, but I want the for-loops to tick by deltaTime instead of frames.
 
-}
+// Make the enemy first take some steps to the right, then some fewer down, then some steps right and loop this
+		float rightSteps = 100, downSteps = 20, leftSteps = 100, stepDistance = 0.1;
 
+
+		if (right)
+		{
+			for (int i = 0; i <= rightSteps; i++)
+			{
+				position.x += stepDistance;
+				println("right "+i);
+				
+			}
+			right = false;
+			down1 = true;
+		}
+		else if (down1)
+		{
+			for (int i = 0; i <= downSteps; i++)
+			{
+				position.y += stepDistance;
+				println("down1 "+i);
+				
+			}
+			down1 = false;
+			left = true;
+		}
+		else if (left)
+		{
+			for (int i = 0; i <= leftSteps; i++)
+			{
+				position.x -= stepDistance;
+				println("left "+i);
+				
+			}
+			left = false;
+			down2 = true;
+		}
+		else if (down2)
+		{
+			for (int i = 0; i <= downSteps; i++)
+			{
+				position.y += stepDistance;
+				println("down2 "+i);
+				
+			}
+			down2 = false;
+			right = true;
+		}
+	}
 }
