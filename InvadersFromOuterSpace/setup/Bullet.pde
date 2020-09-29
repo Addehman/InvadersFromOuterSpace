@@ -7,8 +7,6 @@ class Bullet
 
 	float bulletSpeed = 20;
 
-	Player player = new Player();
-
 	public Bullet()
 	{
 		position = new PVector();
@@ -21,17 +19,6 @@ class Bullet
 		position.y = player.position.y;
 	}
 
-	public Bullet(float x, float y)
-	{
-		//Create vector objects
-		position = new PVector(x, y);
-
-		velocity = new PVector();
-
-		// Starting position from player
-		position.x = player.position.x;
-		position.y = player.position.y;
-	}
 
 	void update()
 	{
@@ -44,10 +31,10 @@ class Bullet
 		//translate(position.x, position.y);
 		fill(bulletColor);
 		noStroke();
-		rect(player.position.x, player.position.y, bulletSizeX, bulletSizeY);
+		rect(position.x, position.y, bulletSizeX, bulletSizeY);
 
-		update();
+		//update();
 
-		println("Shooting");
+		//println("Shooting");
 	}
 }
