@@ -1,5 +1,4 @@
 boolean moveLeft = false, moveRight = false;
-Bullet bullet;
 
 PVector inputVector = new PVector();
 
