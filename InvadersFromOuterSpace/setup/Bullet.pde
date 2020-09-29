@@ -17,8 +17,8 @@ class Bullet
 		bulletColor = color(0, 255, 0);
 
 		// Starting position from player
-		//position.x = player.position.x;
-		//position.y = player.position.y;
+		position.x = player.position.x;
+		position.y = player.position.y;
 	}
 
 	public Bullet(float x, float y)
@@ -27,6 +27,10 @@ class Bullet
 		position = new PVector(x, y);
 
 		velocity = new PVector();
+
+		// Starting position from player
+		position.x = player.position.x;
+		position.y = player.position.y;
 	}
 
 	void update()

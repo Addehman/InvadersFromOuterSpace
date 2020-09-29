@@ -3,12 +3,15 @@ class Enemy
 	PVector position, velocity;
 	float enemySize = 15;
 	color playerColor = color (255, 205, 0);
+
+
 	Enemy ()
 	{
 		position = new PVector ();
 		velocity = new PVector();
 		
-
+		position.x = width/2;
+		position.y = height*0.1;
 	}
 void draw ()
 {
