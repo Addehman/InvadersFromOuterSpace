@@ -2,7 +2,7 @@ class Bullet
 {
 	PVector position, velocity; //Bullet position
 
-	int bulletSizeX = 10, bulletSizeY = 15;
+	float bulletSizeX = 10, bulletSizeY = 15, bulletSize;
 	color bulletColor;
 
 	float bulletSpeed = 20;
@@ -17,6 +17,8 @@ class Bullet
 		// Starting position from player
 		position.x = player.position.x;
 		position.y = player.position.y;
+
+		bulletSize = bulletSizeX * bulletSizeY;
 	}
 
 
