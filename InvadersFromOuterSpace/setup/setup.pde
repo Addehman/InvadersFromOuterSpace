@@ -5,6 +5,8 @@ PFont myFont;
 Player player;
 Enemy enemy;
 
+Bullet bullet;
+
 
 void setup() 
 {
@@ -21,6 +23,8 @@ void setup()
   	enemy = new Enemy();
   	player = new Player();
 
+  	bullet = new Bullet();
+
   	player.position.x = width/2;
   	player.position.y = height * 0.8;
 }
@@ -32,17 +36,18 @@ void draw()
 	// Draw enemy
   	enemy.draw ();
 
-	//game();
+	game();
 
 	player.draw();
 	player.update();
 }
 
-/*void game()
+void game()
 {
 	//Calculate delta time
 	long currentTime = millis();
 	deltaTime = (currentTime - time) * 0.001f;
 
+boolean hasCollided = hitCollision (bullet.position.x, bullet.position.y, bullet.bulletSize)
 	
-}*/
+}
