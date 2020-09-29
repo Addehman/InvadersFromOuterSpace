@@ -8,11 +8,20 @@ class Enemy
 	Enemy ()
 	{
 		position = new PVector ();
+<<<<<<< HEAD
+		velocity = new PVector ();
+
+		position.x = width/2;
+		position.y = width/2;
+		
+=======
 		velocity = new PVector();
 		
 		position.x = width/2;
 		position.y = height*0.1;
+>>>>>>> 9776520a6ded6f2d3c729b335dbf772b8d42935c
 	}
+
 void draw ()
 {
 	fill (playerColor);
@@ -39,6 +48,13 @@ void star(float x, float y, float radius1, float radius2, int npoints) {
     vertex(sx, sy);
   }
   endShape(CLOSE);
+}
+
+void movement ()
+{
+	
+
+
 }
 
 }
