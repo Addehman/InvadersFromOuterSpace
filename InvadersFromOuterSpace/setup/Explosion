@@ -1,10 +1,10 @@
-class explosion {
+class Explosion {
   float expX;
   float expY;
   int counter = 0;
   PImage Image1, Image2, Image3,Image4,Image5,Image6,Image7,Image8,Image9;
   
-explosion(float expX, float expY){
+Explosion(float expX, float expY) {
   this.expX = expX;
   this.expY = expY; 
   
