@@ -17,7 +17,6 @@ PVector collider = new PVector();
 
 boolean startMenu = true;
 
-
 void setup() 
 {
 	size(640, 480);
