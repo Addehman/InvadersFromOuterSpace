@@ -8,24 +8,38 @@ void keyPressed()
   if (keyCode == LEFT || key == 'a')
    	moveLeft = true;
 
+
   else if (keyCode == RIGHT || key == 'd')
   	moveRight = true;
 	
-  if (key == ' ')
+//Checking if SPACE is pressed, and if there is no bullet on screen.
+  if (key == ' ' && bulletDead)
   {
-//Find empty spot in array, create list
-  	
+//Find empty spot in array, create list (create bullet, at player's position)
   	for (int i = 0; i < bullets.length; i++)
   	{
-  		if (bullets[i] == null)
-  		{
-  			bullets[i] = new Bullet();
-  			bullets[i].position = player.position.copy();
-  			//we are done, break/quit the loop.
-  			break;
-  		}
+      bullets[i] = new Bullet();
+      bullets[i].position = player.position.copy();
+
+      bulletDead = false; //Setting bullet not dead so that another can not be fired so that only one is on the screen at a time.
+
+  		// if (bullets[i] == null)
+  		// {
+  		// 	bullets[i] = new Bullet();
+  		// 	bullets[i].position = player.position.copy();
+  		// 	//we are done, break/quit the loop.
+  		// 	break;
+  		// }
+    //   else 
+    //   {
+    //     bullets[i] = new Bullet();
+    //     bullets[i].position = player.position.copy();
+    //     break;
+    //   }
   	}
   }
+
+
   if (key == ESC)
   {
   	exit ();

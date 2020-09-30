@@ -3,9 +3,9 @@ class Enemy
 	PVector position, velocity, startPos;
 	
 	float rightSteps = 30, downSteps = 10, leftSteps = 30, 
-	stepDistance = 0.5, currentSteps = 0, enemySize = 15;
+	stepDistance = 0.5, currentSteps = 0, enemySize1 = 7, enemySize2 = 15;
 	
-	color playerColor = color (255, 205, 0);
+	color enemyColor = color (255, 205, 0);
 
 	boolean right = true, down1 = false, left = false, down2 = false;
 
@@ -14,21 +14,23 @@ class Enemy
 	{
 		position = new PVector();
 		velocity = new PVector();
-		startPos = new PVector(width * 0.1, height * 0.1);
+		startPos = new PVector(width * 0.1, height * 0.1 );
 		
 		position = startPos;
+
+		//position.x = position.x + enemySize2 * 3 * numberOfEnemies;
 		
 	}
 
 	void draw ()
 	{
-		fill (playerColor);
+		fill (enemyColor);
 		stroke(255);
 
 		push();
 	  	translate(position.x, position.y);
 	  	//rotate(frameCount / -100.0);
-	  	star(0, 0, 10, 30, 5); 
+	  	star(0, 0, enemySize1, enemySize2, 5); 
 	  	pop();
 	}
 

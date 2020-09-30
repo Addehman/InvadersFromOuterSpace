@@ -48,10 +48,6 @@ class Bullet
 			this.bullet = null;
 		}*/
 // This "if" below is temporary and shall be replaced by the one above, but is testing if the "null" works.
-		if (position.y < bulletSizeY*2)
-		{
-			position.y = bulletSizeY*2;
-			//this = null;
-		}
+		
 	}
 }

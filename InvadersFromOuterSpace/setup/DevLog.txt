@@ -23,3 +23,39 @@ _Can't get the Enemy-object to move according to the if:s in the Enemy-file, und
 	Loop like that.
 
 _For-loop for the bullets has a limited ammo, want to have it reset at some point or at least be infinite somehow.
+
+##############################################################################################################################
+
+2020-09-30:
+_Needs to be implemented:
+- Start Menu.*
+- HP / Lives
+- Game Over.
+- Highscore.
+- GUI : - Score, - Highscore, - Lives.
+- Several Enemies moving simultaneously.
+- Enemies should randomly shoot at Player.
+
+_Needs to be finished:
+- Explosion effect. 
+- Collision. *
+- Unlimited ammo(but restricted to 1 shot per second).*
+- Bullets should be removed when colliding, that or be hidden until spawned again.*
+- Enemies should spawn at different positions
+
+_Notes:
+- Just ended with tinkering in the Explosion-file - Centering the images and giving renderExp() the aguments (float x, float y),
+	and in the renderExp() (under it on its first lines(37-39)) I define the floats' values to be used to set the position of the
+	explosion to the enemy's when colliding.
+
+- For now I made the enemy "disappear" by making its size to 0, and the same goes for the Bullets.
+
+
+_Need Help with:
+- How to get each enemies[i] to spawn at different locations?
+- Does the Explosion animation play through?
+- Can we use the same code for the Enemy's bullet to shoot at the player randomly? Do we use an extension in that case? How do we
+	tell the extension to move in the opposite direction?
+- What does the push() and pop() actually do? Why are they used?
+
+##############################################################################################################################

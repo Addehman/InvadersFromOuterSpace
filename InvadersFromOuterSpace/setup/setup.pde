@@ -1,13 +1,12 @@
 float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
-int numberOfBullets = 100, buttonX, buttonY, buttonSize = 100;
+int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemies = 5, buttonX, buttonY, buttonSize = 100;
 
 PFont myFont;
 
 Player player;
-Enemy enemy;
-Enemies enemies;
+Enemy[] enemies;
 Bullet[] bullets;
 Explosion explosion;
 StartMenu menu;
@@ -15,7 +14,7 @@ GameManager gameManager;
 
 PVector collider = new PVector();
 
-boolean startMenu = false, buttonOver = false;	//Don't forget to set startMenu back to true when development is over!
+boolean startMenu = false, buttonOver = false, bulletDead = true;	//Don't forget to set startMenu back to true when development is over!
 
 
 void setup() 
@@ -30,13 +29,19 @@ void setup()
 //Setting frame rate with a variable
 	frameRate(framerateMod);
 
-  	enemy = new Enemy();
+  	enemies = new Enemy[numberOfEnemies];
   	player = new Player();
   	bullets = new Bullet[numberOfBullets];
   	explosion = new Explosion(expX, expY);
-  	//enemies = new Enemies();
-  	menu = new StartMenu ();
+  	menu = new StartMenu();
   	gameManager = new GameManager();
+
+//Create our enemies
+  	for (int i = 0; i < numberOfEnemies; i++)
+  	{
+  		enemies[i] = new Enemies();
+  		//enemies[i].startPos.x += 50;
+  	}
 
   	player.position.x = width/2;
   	player.position.y = height * 0.8;
@@ -49,12 +54,14 @@ void setup()
 void draw() 
 {
 	background(0, 20, 39);
-	if (startMenu) {
+
+	if (startMenu) 
+	{
 		menu.startmenu ();
 	}
-	else {
-	gameManager.update();
-
+	else 
+	{
+		gameManager.update();
 	}
 }
 
