@@ -13,8 +13,7 @@ void keyPressed()
 	
   if (key == ' ')
   {
-  	//Find empty spot in array, create list
-    firstShot = true;
+//Find empty spot in array, create list
   	
   	for (int i = 0; i < bullets.length; i++)
   	{

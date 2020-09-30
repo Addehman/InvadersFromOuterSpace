@@ -1,35 +1,44 @@
-class Explosion {
+class Explosion 
+{
   float expX;
   float expY;
   int counter = 0;
   PImage Image1, Image2, Image3,Image4,Image5,Image6,Image7,Image8,Image9;
-  
-Explosion(float expX, float expY) {
-  this.expX = expX;
-  this.expY = expY; 
-  
-  Image1 = loadImage("Images/Image1.png");
-  Image1.resize(70,70);
-  Image2 = loadImage("Images/Image2.png");
-  Image2.resize(70,70);
-  Image3 = loadImage("Images/Image3.png");
-  Image3.resize(70,70);
-  Image4 = loadImage("Images/Image4.png");
-  Image4.resize(70,70);
-  Image5 = loadImage("Images/Image5.png");
-  Image5.resize(70,70);
-  Image6 = loadImage("Images/Image6.png");
-  Image6.resize(70,70); 
-  Image7 = loadImage("Images/Image7.png");
-  Image7.resize(70,70); 
-  Image8 = loadImage("Images/Image8.png");
-  Image8.resize(70,70); 
-  Image9 = loadImage("Images/Image9.png");
-  Image9.resize(70,70); 
 
-}
+  
+  Explosion(float expX, float expY) 
+  {
+    this.expX = expX;
+    this.expY = expY; 
+    
+    Image1 = loadImage("Images/Image1.png");
+    Image1.resize(70,70);
+    Image2 = loadImage("Images/Image2.png");
+    Image2.resize(70,70);
+    Image3 = loadImage("Images/Image3.png");
+    Image3.resize(70,70);
+    Image4 = loadImage("Images/Image4.png");
+    Image4.resize(70,70);
+    Image5 = loadImage("Images/Image5.png");
+    Image5.resize(70,70);
+    Image6 = loadImage("Images/Image6.png");
+    Image6.resize(70,70); 
+    Image7 = loadImage("Images/Image7.png");
+    Image7.resize(70,70); 
+    Image8 = loadImage("Images/Image8.png");
+    Image8.resize(70,70); 
+    Image9 = loadImage("Images/Image9.png");
+    Image9.resize(70,70); 
 
-  void renderExp(){
+  }
+
+  void renderExp(float x, float y)
+  {
+// setting the explosion's position, which are used to define it to be the same as the enemy's position.
+    this.expX = x;
+    this.expY = y;
+    imageMode(CENTER);
+
     if(counter >=0 && counter <=5){
     image(Image1,expX,expY);
     }

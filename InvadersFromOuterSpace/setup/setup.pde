@@ -1,7 +1,7 @@
 float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
-int numberOfBullets = 5, buttonX, buttonY, buttonSize = 100;
+int numberOfBullets = 100, buttonX, buttonY, buttonSize = 100;
 
 PFont myFont;
 
@@ -11,10 +11,12 @@ Enemies enemies;
 Bullet[] bullets;
 Explosion explosion;
 StartMenu menu;
+GameManager gameManager;
 
 PVector collider = new PVector();
 
-boolean startMenu = true, buttonOver = false, firstShot = false;
+boolean startMenu = false, buttonOver = false;	//Don't forget to set startMenu back to true when development is over!
+
 
 void setup() 
 {
@@ -34,6 +36,7 @@ void setup()
   	explosion = new Explosion(expX, expY);
   	//enemies = new Enemies();
   	menu = new StartMenu ();
+  	gameManager = new GameManager();
 
   	player.position.x = width/2;
   	player.position.y = height * 0.8;
@@ -50,61 +53,10 @@ void draw()
 		menu.startmenu ();
 	}
 	else {
-	game();
+	gameManager.update();
 
 	}
 }
 
-void game()
-{
-//Calculate delta time
-	long currentTime = millis();
-	deltaTime = (currentTime - time) * 0.001f;
 
-//Draw player
-	player.draw();
-	player.update();
-
-//Draw enemy
-  	enemy.draw();
-  	//println(deltaTime);
-
-  	enemy.movement();
-  	//enemies.draw();
-
-// Check if the bullets are empty, if not, then spawn bullet.
-	for (int i = 0; i < bullets.length; i++) 
-	{
-		if (bullets [i] == null) {
-			continue;
-		}
-		else 
-		{
-
-		bullets[i].update();
-		bullets[i].draw(); 
-		}
-	}
-
-	// Here we check for if there is a collision, and then we need to add a consequence. 
-	//if (firstShot)
-	//{
-	for (int i = 0; i <= bullets.length; i++)
-	{
-		if (bullets [i] == null) 
-		{
-			continue;
-		}
-		else 
-		{
-			if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemy.position.x, enemy.position.y, enemy.enemySize)) 
-			{
-				explosion.renderExp();
-				println("colliding");
-			}
-		}
-			
-	}
-	//}
-}
 
