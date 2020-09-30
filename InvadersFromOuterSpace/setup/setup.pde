@@ -1,21 +1,20 @@
 float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
-int numberOfBullets = 5;
+int numberOfBullets = 5, buttonX, buttonY, buttonSize = 100;
 
 PFont myFont;
 
 Player player;
 Enemy enemy;
 Enemies enemies;
-Bullet[] bullets; 
-Bullet bullet;
+Bullet[] bullets;
 Explosion explosion;
 StartMenu menu;
 
 PVector collider = new PVector();
 
-boolean startMenu = true;
+boolean startMenu = true, buttonOver = false, firstShot = false;
 
 void setup() 
 {
@@ -32,13 +31,15 @@ void setup()
   	enemy = new Enemy();
   	player = new Player();
   	bullets = new Bullet[numberOfBullets];
-  	bullet = new Bullet();
   	explosion = new Explosion(expX, expY);
   	//enemies = new Enemies();
   	menu = new StartMenu ();
 
   	player.position.x = width/2;
   	player.position.y = height * 0.8;
+
+  	buttonX = width/2 - buttonSize-10;
+  	buttonY = height/2 - buttonSize/2;
 }
 
 
@@ -60,18 +61,6 @@ void game()
 	long currentTime = millis();
 	deltaTime = (currentTime - time) * 0.001f;
 
-// Here we check for if there is a collision, and then we need to add a consequence. 
-	for (int i = 0; i <= numberOfBullets; i++)
-	{
-		boolean hasCollided = hitCollision (bullet.position.x, bullet.position.y, 
-			bullet.bulletSize, enemy.position.x, enemy.position.y, enemy.enemySize);
-		
-		if (hasCollided) {
-			explosion.renderExp();
-			println("colliding");
-		}
-	}
-
 //Draw player
 	player.draw();
 	player.update();
@@ -84,15 +73,38 @@ void game()
   	//enemies.draw();
 
 // Check if the bullets are empty, if not, then spawn bullet.
-	for (int i = 0; i < bullets.length; i++) {
+	for (int i = 0; i < bullets.length; i++) 
+	{
 		if (bullets [i] == null) {
 			continue;
 		}
-		else {
+		else 
+		{
 
 		bullets[i].update();
 		bullets[i].draw(); 
 		}
 	}
+
+	// Here we check for if there is a collision, and then we need to add a consequence. 
+	//if (firstShot)
+	//{
+	for (int i = 0; i <= bullets.length; i++)
+	{
+		if (bullets [i] == null) 
+		{
+			continue;
+		}
+		else 
+		{
+			if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemy.position.x, enemy.position.y, enemy.enemySize)) 
+			{
+				explosion.renderExp();
+				println("colliding");
+			}
+		}
+			
+	}
+	//}
 }
 

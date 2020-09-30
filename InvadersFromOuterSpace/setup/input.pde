@@ -14,6 +14,7 @@ void keyPressed()
   if (key == ' ')
   {
   	//Find empty spot in array, create list
+    firstShot = true;
   	
   	for (int i = 0; i < bullets.length; i++)
   	{

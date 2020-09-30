@@ -60,7 +60,7 @@ class Enemy
 			
 			position.x += stepDistance;
 			currentSteps += stepDistance;
-			println("right " + currentSteps);
+			//println("right " + currentSteps);
 				
 			if (currentSteps >= rightSteps)
 			{
@@ -74,7 +74,7 @@ class Enemy
 			
 			position.y += stepDistance;
 			currentSteps += stepDistance;
-			println("down1 " + currentSteps);
+			//println("down1 " + currentSteps);
 
 			if (currentSteps >= downSteps)
 			{
@@ -87,7 +87,7 @@ class Enemy
 		{
 			position.x -= stepDistance;
 			currentSteps += stepDistance;
-			println("left " + currentSteps);
+			//println("left " + currentSteps);
 			
 				
 			if (currentSteps >= leftSteps)
@@ -101,7 +101,7 @@ class Enemy
 		{
 			position.y += stepDistance;
 			currentSteps += stepDistance;
-			println("down2 " + currentSteps);
+			//println("down2 " + currentSteps);
 			
 			if (currentSteps >= downSteps)
 			{
