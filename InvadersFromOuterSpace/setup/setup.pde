@@ -9,7 +9,9 @@ Enemies enemies;
 Bullet[] bullets; 
 Bullet bullet;
 Explosion explosion;
+StartMenu menu;
 
+boolean startMenu = true;
 
 void setup() 
 {
@@ -28,6 +30,7 @@ void setup()
   	bullets = new Bullet[100];
   	explosion = new Explosion(expX, expY);
   	//enemies = new Enemies();
+  	menu = new StartMenu ();
 
   	player.position.x = width/2;
   	player.position.y = height * 0.8;
@@ -38,10 +41,14 @@ void setup()
 void draw() 
 {
 	background(0, 20, 39);
-
+	if (startMenu) {
+		menu.startmenu ();
+	}
+	else {
 	game();
-}
 
+	}
+}
 
 void game()
 {
