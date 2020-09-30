@@ -5,11 +5,11 @@ PFont myFont;
 
 Player player;
 Enemy enemy;
-
+Enemies enemies;
 Bullet[] bullets; 
 Bullet bullet;
-
 Explosion explosion;
+
 
 void setup() 
 {
@@ -27,22 +27,21 @@ void setup()
   	player = new Player();
   	bullets = new Bullet[100];
   	explosion = new Explosion(expX, expY);
+  	//enemies = new Enemies();
 
   	player.position.x = width/2;
   	player.position.y = height * 0.8;
 
 }
 
+
 void draw() 
 {
 	background(0, 20, 39);
 
-	
-
 	game();
-
-
 }
+
 
 void game()
 {
@@ -51,7 +50,10 @@ void game()
 	deltaTime = (currentTime - time) * 0.001f;
 
 // Here we check for if there is a collision, and then we need to add a consequence. 
-	//boolean hasCollided = hitCollision (bullet.position.x, bullet.position.y, bullet.bulletSize, enemy.position.x, enemy.position.y, enemy.enemySize);
+	/*boolean hasCollided = hitCollision (bullet.position.x, bullet.position.y, bullet.bulletSize, enemy.position.x, enemy.position.y, enemy.enemySize);
+	if (hasCollided) {
+		explosion.renderExp();
+	}*/
 
 //Draw player
 	player.draw();
@@ -60,13 +62,9 @@ void game()
 //Draw enemy
   	enemy.draw();
   	//println(deltaTime);
-//Every 2 seconds: move enemy 
-  	/*if ((int)deltaTime % 3 == 0)
-  		{
-  			enemy.movement();
-  		}*/
 
-  		enemy.movement();
+  	enemy.movement();
+  	//enemies.draw();
 
 // Check if the bullets are empty, if not, then spawn bullet.
 	for (int i = 0; i < bullets.length; i++) {
@@ -80,19 +78,4 @@ void game()
 		}
 	}
 }
-<<<<<<< HEAD
-=======
 
-void game()
-{
-	//Calculate delta time
-	long currentTime = millis();
-	deltaTime = (currentTime - time) * 0.001f;
-
-boolean hasCollided = hitCollision (bullet.position.x, bullet.position.y, bullet.bulletSize, enemy.position.x, enemy.position.y, enemy.enemySize);
-	if (hasCollided) {
-		explosion.renderExp();
-	}
-	// Here we check for if there is a collision, and then we need to add a consequence. 
-}
->>>>>>> d3d10bebcbcb29f3c538340d415403cec17d6230

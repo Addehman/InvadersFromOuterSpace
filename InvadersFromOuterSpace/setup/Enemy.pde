@@ -1,7 +1,10 @@
 class Enemy
 {
 	PVector position, velocity, startPos;
-	float enemySize = 15;
+	
+	float rightSteps = 30, downSteps = 10, leftSteps = 30, 
+	stepDistance = 0.5, currentSteps = 0, enemySize = 15;
+	
 	color playerColor = color (255, 205, 0);
 
 	boolean right = true, down1 = false, left = false, down2 = false;
@@ -22,11 +25,11 @@ class Enemy
 		fill (playerColor);
 		stroke(255);
 
-		pushMatrix();
+		push();
 	  	translate(position.x, position.y);
-	  	rotate(frameCount / -100.0);
+	  	//rotate(frameCount / -100.0);
 	  	star(0, 0, 10, 30, 5); 
-	  	popMatrix();
+	  	pop();
 	}
 
 	void star(float x, float y, float radius1, float radius2, int npoints) 
@@ -51,52 +54,61 @@ class Enemy
 	{// not sure if I should be using deltaTime here, but I want the for-loops to tick by deltaTime instead of frames.
 
 // Make the enemy first take some steps to the right, then some fewer down, then some steps right and loop this
-		float rightSteps = 100, downSteps = 20, leftSteps = 100, stepDistance = 0.1;
-
 
 		if (right)
 		{
-			for (int i = 0; i <= rightSteps; i++)
-			{
-				position.x += stepDistance;
-				println("right "+i);
+			
+			position.x += stepDistance;
+			currentSteps += stepDistance;
+			println("right " + currentSteps);
 				
+			if (currentSteps >= rightSteps)
+			{
+				right = false;
+				down1 = true;
+				currentSteps = 0;
 			}
-			right = false;
-			down1 = true;
 		}
 		else if (down1)
 		{
-			for (int i = 0; i <= downSteps; i++)
+			
+			position.y += stepDistance;
+			currentSteps += stepDistance;
+			println("down1 " + currentSteps);
+
+			if (currentSteps >= downSteps)
 			{
-				position.y += stepDistance;
-				println("down1 "+i);
-				
+				down1 = false;
+				left = true;
+				currentSteps = 0;
 			}
-			down1 = false;
-			left = true;
 		}
 		else if (left)
 		{
-			for (int i = 0; i <= leftSteps; i++)
-			{
-				position.x -= stepDistance;
-				println("left "+i);
+			position.x -= stepDistance;
+			currentSteps += stepDistance;
+			println("left " + currentSteps);
+			
 				
+			if (currentSteps >= leftSteps)
+			{
+				left = false;
+				down2 = true;
+				currentSteps = 0;
 			}
-			left = false;
-			down2 = true;
 		}
 		else if (down2)
 		{
-			for (int i = 0; i <= downSteps; i++)
+			position.y += stepDistance;
+			currentSteps += stepDistance;
+			println("down2 " + currentSteps);
+			
+			if (currentSteps >= downSteps)
 			{
-				position.y += stepDistance;
-				println("down2 "+i);
-				
+				down2 = false;
+				right = true;
+				currentSteps = 0;
 			}
-			down2 = false;
-			right = true;
 		}
 	}
 }

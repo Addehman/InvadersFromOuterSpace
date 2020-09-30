@@ -1,16 +1,14 @@
 boolean moveLeft = false, moveRight = false;
 
-
 PVector inputVector = new PVector();
-
 
 
 void keyPressed()
 {
-   if (keyCode == LEFT || key == 'a')
+  if (keyCode == LEFT || key == 'a')
    	moveLeft = true;
 
-   else if (keyCode == RIGHT || key == 'd')
+  else if (keyCode == RIGHT || key == 'd')
   	moveRight = true;
 	
   if (key == ' ')
@@ -34,6 +32,7 @@ void keyPressed()
   }
 }
 
+
 void keyReleased ()
 {
   if (keyCode == LEFT || key == 'a')
@@ -41,6 +40,7 @@ void keyReleased ()
   else if (keyCode == RIGHT || key == 'd')
   	moveRight = false;
 }
+
 
 PVector input()
 {
