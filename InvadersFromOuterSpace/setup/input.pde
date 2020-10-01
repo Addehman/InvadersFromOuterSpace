@@ -46,10 +46,20 @@ void keyPressed()
   }
 
   //test keys to see if we can get restart screen
-	if (key == 'k') {
+	if (key == 'k') 
+  {
 		lives --;
 		
 	}
+
+  if (key == 'e')
+  {
+    for (int i = 0; i < numberOfEnemyBullets; i++)
+    {
+      enemyBullets[i] = new EnemyBullets();
+      enemyBullets[i].position = enemies3[i].position.copy();
+    }
+  }
 
 }
 

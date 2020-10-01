@@ -6,36 +6,13 @@ class GameManager
 
 	}
 
+// A start-function that will act as a "setup"-function, but which will be possible to call on anytime and not just once.
+// Needed for example when we want to reset the game after game over.
 	void start () 
 	{
 		lives = 3;
 		
-		/*Create our enemies
-	  	for (int i = 0; i < numberOfEnemies; i++)
-	  	{
-	  		enemies[i] = new Enemies();
-
-	  	
-	  		if (firstRowOfEnemies)
-	  		{
-	  			enemies[i].position.x += 50 * i;
-	  		}
-	  		if (i <= firstRowOfEnemies)
-	  		{
-	  			enemies[i].position.x += 50 * i;
-	  		}
-	  		if (i > firstRowOfEnemies && i <= secondRowOfEnemies)
-	  		{
-	  			for (int j = 0; j < firstRowOfEnemies; j++)
-	  			{
-	  				enemies[i].position = enemies[i].startPos;
-	  			  	enemies[i].position.y = height * 0.2; 
-
-	  			  	enemies[i].position.x += 50 * j;
-	  			}
-	  		}
-	  		}*/
-
+// Create our enemies
 		for (int i = 0; i < numberOfEnemies; i++)
 		{
 			enemies1[i] = new Enemies();
@@ -77,8 +54,7 @@ class GameManager
 //Draw enemy
 	  	for(int i = 0; i < numberOfEnemies; i++)
 	  	{
-		  	//enemy.draw();
-		  	println("drawing enemy");
+		  	
 		  	enemies1[i].draw();
 		  	enemies1[i].movement1();
 
@@ -87,19 +63,13 @@ class GameManager
 
 		  	enemies3[i].draw();
 		  	enemies3[i].movement1();
-		  	//println(deltaTime);
-
-		  	//enemy.movement();
-		  	
-		  	
-
-		  	//enemies.draw();
 	  	}
 
-if (lives <= 0) {
-
-	gameOver = true;
-}	  	
+// If number of lives are equal or lower than 0, then go to game over screen.
+	  	if (lives <= 0) 
+	  	{
+			gameOver = true;
+		}	  	
 
 
 // Check if the bullets are empty, if not, then spawn bullet.
@@ -116,100 +86,120 @@ if (lives <= 0) {
 
 				for (int j = 0; j < enemies1.length; j++)
 				{
-					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies1[j].position.x, enemies1[j].position.y, enemies1[j].enemySize2)) 
+					// Check for collision between Bullet and the upper row of enemies (enemies1).
+					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSizeY, enemies1[j].position.x, enemies1[j].position.y, enemies1[j].enemySize2)) 
 					{
 						explosion.renderExp(enemies1[j].position.x, enemies1[j].position.y);
 	
 						score += scoreUp; // Add score for killing enemy
-						//println("colliding");
+
+						// Remove the enemy as best as possible, by moving it outside of the screen, then shrinking it(neccessary?).
+						enemies1[j].position.x = -width;
 						enemies1[j].enemySize1 = 0;
 						enemies1[j].enemySize2 = 0;
 
 						// enemies[j] = null; // Does NullPointerException!
-						bullets[i] = null;
-	
-						// bullets[i].bulletSizeX = 0;
-						// bullets[i].bulletSizeY = 0;
-	
-						bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
 
-						break;
+						bullets[i] = null; // Removing the current bullet.
+	
+						bulletDead = true; // Setting the bullet to dead, so that a new shot can be fired again.
+
+						break; // This condition is fullfilled, so break the for-loop from here and thus go onward with the rest of the code.
 					}
 					else if (bullets[i].position.y < bullets[i].bulletSizeY*2)
 					{
-						// bullets[i].position.y = bullets[i].bulletSizeY*2;
-						// bullets[i].bulletSizeX = 0;
-						// bullets[i].bulletSizeY = 0;
-
-						bullets[i] = null;
+						bullets[i] = null; // Removing the current bullet.
 	
-						bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+						bulletDead = true; // Setting the bullet to dead, so that a new shot can be fired again.
 						
-						break;
+						break; // This condition is fullfilled, so break the for-loop from here and thus go onward with the rest of the code.
 					}
-					// else if (hitCollision(bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies.position.x, enemies.position.y, enemies.enemySize2))
-					// {
-					// 	enemies.enemySize1 = 0;
-					// 	enemies.enemySize2 = 0;
-	
-					// 	bullets[i].bulletSizeX = 0;
-					// 	bullets[i].bulletSizeY = 0;
-	
-					// 	bulletDead = true;//setting the bullet to dead, so that a new shot can be fired again.
-					// }
 
-
-					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies2[j].position.x, enemies2[j].position.y, enemies2[j].enemySize2)) 
+					// Check for collision between Bullet and the middle row of enemies (enemies2).
+					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSizeY, enemies2[j].position.x, enemies2[j].position.y, enemies2[j].enemySize2)) 
 					{
 						explosion.renderExp(enemies2[j].position.x, enemies2[j].position.y);
 	
 						score += scoreUp; // Add score for killing enemy
-						//println("colliding");
+
+						// Remove the enemy as best as possible, by moving it outside of the screen, then shrinking it(neccessary?).
+						enemies2[j].position.x = -width;
 						enemies2[j].enemySize1 = 0;
 						enemies2[j].enemySize2 = 0;
 
 						
-						bullets[i] = null;
+						bullets[i] = null; // Removing the current bullet.
 	
 	
-						bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+						bulletDead = true; // Setting the bullet to dead, so that a new shot can be fired again.
 
-						break;
+						break; // This condition is fullfilled, so break the for-loop from here and thus go onward with the rest of the code.
 					}
 					else if (bullets[i].position.y < bullets[i].bulletSizeY*2)
 					{
-						bullets[i] = null;
+						bullets[i] = null; // Removing the current bullet.
 	
-						bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+						bulletDead = true; // Setting the bullet to dead, so that a new shot can be fired again.
 						
-						break;
+						break; // This condition is fullfilled, so break the for-loop from here and thus go onward with the rest of the code.
 					}
 
-					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies3[j].position.x, enemies3[j].position.y, enemies3[j].enemySize2)) 
+					// Check for collision between Bullet and the lower row of enemies (enemies3).
+					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSizeY, enemies3[j].position.x, enemies3[j].position.y, enemies3[j].enemySize2)) 
 					{
 						explosion.renderExp(enemies3[j].position.x, enemies3[j].position.y);
 	
-						score += scoreUp; // Add score for killing enemy
-						//println("colliding");
+						score += scoreUp; // Adding score for killing enemy
+
+						// Remove the enemy as best as possible, by moving it outside of the screen.
+						enemies3[j].position.x = -width;
 						enemies3[j].enemySize1 = 0;
 						enemies3[j].enemySize2 = 0;
 
 						
-						bullets[i] = null;
+						bullets[i] = null; // Removing the current bullet.
 	
 	
-						bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+						bulletDead = true; // Setting the bullet to dead, so that a new shot can be fired again.
 
-						break;
+						break; // This condition is fullfilled, so break the for-loop from here and thus go onward with the rest of the code.
 					}
 					else if (bullets[i].position.y < bullets[i].bulletSizeY*2)
 					{
-						bullets[i] = null;
+						bullets[i] = null; // Removing the current bullet.
 	
 						bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
 						
-						break;
+						break; // This condition is fullfilled, so break the for-loop from here and thus go onward with the rest of the code.
 					}
+				}
+			}
+		}
+
+		for (int i = 0; i < enemyBullets.length; i++)
+		{
+			if (enemyBullets[i] == null)
+			{
+				continue;
+			}
+			else
+			{
+				enemyBullets[i].update2();
+				enemyBullets[i].draw();
+
+				if (hitCollision(enemyBullets[i].position.x, enemyBullets[i].position.y, enemyBullets[i].bulletSizeY, player.position.x, player.position.y, player.playerSize))
+				{
+					explosion.renderExp(player.position.x, player.position.y);
+
+					enemyBullets[i] = null;
+
+					break;
+				}
+				else if (enemyBullets[i].position.y > height)
+				{
+					enemyBullets[i] = null;
+
+					break;
 				}
 			}
 		}

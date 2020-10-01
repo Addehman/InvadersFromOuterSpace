@@ -1,7 +1,7 @@
 float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
-int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemies = 11, buttonX, buttonY, buttonSize = 100,
+int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemyBullets = 1, numberOfEnemies = 11, buttonX, buttonY, buttonSize = 100,
 lives = 3;
 
 PFont myFont;
@@ -13,6 +13,7 @@ Enemy[] enemies1;
 Enemy[] enemies2;
 Enemy[] enemies3;
 Bullet[] bullets;
+Bullet[] enemyBullets;
 Explosion explosion;
 StartMenu menu;
 GameManager gameManager;
@@ -21,7 +22,7 @@ GameOver gameOverClass;
 PVector collider = new PVector();
 
 boolean startMenu = false, bulletDead = true;	//Don't forget to set startMenu back to true when development is over!
-boolean gameOver = false, firstRowOfEnemies = true, secondRowOfEnemies = false, thirdRowOfEnemies = false;
+boolean gameOver = false;
 
 
 void setup()
@@ -45,6 +46,7 @@ void setup()
   	enemies3 = new Enemy[numberOfEnemies];
   	player = new Player();
   	bullets = new Bullet[numberOfBullets];
+  	enemyBullets = new Bullet[numberOfEnemyBullets];
   	explosion = new Explosion(expX, expY);
   	menu = new StartMenu();
   	gameManager = new GameManager();
@@ -63,7 +65,8 @@ void draw()
 	{
 		menu.startmenu ();
 	}
-	else if (gameOver) {
+	else if (gameOver) 
+	{
 		gameOverClass.gameover();
 	}
 	else 

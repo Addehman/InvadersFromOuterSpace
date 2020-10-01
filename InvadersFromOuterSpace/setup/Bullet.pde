@@ -2,7 +2,7 @@ class Bullet
 {
 	PVector position, velocity; //Bullet position
 
-	float bulletSizeX = 10, bulletSizeY = 15, bulletSize;
+	float bulletSizeX = 10, bulletSizeY = 15/*, bulletSize*/;
 	float bulletSpeed = 20;
 
 	color bulletColor;
@@ -27,6 +27,11 @@ class Bullet
 	{
 // Update bullet position
 		position.y -= bulletSpeed;
+	}
+
+	void update2()
+	{
+		position.y += bulletSpeed;
 	}
 
 	void draw()

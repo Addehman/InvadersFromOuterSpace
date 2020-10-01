@@ -59,3 +59,16 @@ _Need Help with:
 - What does the push() and pop() actually do? Why are they used?
 
 ##############################################################################################################################
+
+2020-10-01:
+_Needs to be implemented:
+- Enemies shoot at player,
+- GUI - score/health/extra lives,
+- win screen/emilie - if -or else,
+- Game over if stars fall down, change boolean if star below y.
+
+_Need helpo with:
+- How to tell the spawning of the enemies[i] to change 
+- Why can't I nullify enemies[j] but bullets[i] in GameManager, under collision detection?
+- How to make the button for Start Game to only be clickable on the actual button, and not able to click above it like we can now?
+
