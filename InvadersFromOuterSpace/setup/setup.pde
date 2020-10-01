@@ -1,13 +1,15 @@
 float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
-int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemies = 33, firstRowOfEnemies = 11, secondRowOfEnemies = 22, thirdRowOfEnemies = 33, buttonX, buttonY, buttonSize = 100;
+int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemies = 11/*, firstRowOfEnemies = 11, secondRowOfEnemies = 22, thirdRowOfEnemies = 33*/, buttonX, buttonY, buttonSize = 100;
 int lives = 3;
 
 PFont myFont;
 
 Player player;
-Enemy[] enemies;
+Enemy[] enemies1;
+Enemy[] enemies2;
+Enemy[] enemies3;
 Bullet[] bullets;
 Explosion explosion;
 StartMenu menu;
@@ -17,7 +19,7 @@ GameOver gameOverClass;
 PVector collider = new PVector();
 
 boolean startMenu = false, bulletDead = true;	//Don't forget to set startMenu back to true when development is over!
-boolean gameOver = false;
+boolean gameOver = false, firstRowOfEnemies = true, secondRowOfEnemies = false, thirdRowOfEnemies = false;
 
 void setup() 
 {
@@ -31,7 +33,9 @@ void setup()
 //Setting frame rate with a variable
 	frameRate(framerateMod);
 
-  	enemies = new Enemy[numberOfEnemies];
+  	enemies1 = new Enemy[numberOfEnemies];
+  	enemies2 = new Enemy[numberOfEnemies];
+  	enemies3 = new Enemy[numberOfEnemies];
   	player = new Player();
   	bullets = new Bullet[numberOfBullets];
   	explosion = new Explosion(expX, expY);
@@ -39,46 +43,7 @@ void setup()
   	gameManager = new GameManager();
   	gameOverClass = new GameOver ();
 
-<<<<<<< Updated upstream
-gameManager.start();
-
-=======
-//Create our enemies
-  	for (int i = 0; i < numberOfEnemies; i++)
-  	{
-  		
-
-  		if (i <= firstRowOfEnemies)
-  		{
-  			enemies[i] = new Enemies();
-  			enemies[i].position.x += 50 * i;
-  		}
-  		else if (i > firstRowOfEnemies && i <= secondRowOfEnemies)
-  		{
-  			for (int j = 0; j < firstRowOfEnemies; j++)
-  			{
-  				enemies[i] = new Enemies();
-  				enemies[i].position = enemies[i].startPos;
-  			  	enemies[i].position.y = height * 0.2; 
-
-  			  	enemies[i].position.x += 50 * j;
-  			}
-  		}
-  	}
-
-  	// for (int i = 0; i < numberOfEnemies; i++)
-  	// {
-  	// 	enemies[i] = new Enemies();
-  	// 	enemies[i].position.y += 50;
-  	// 	enemies[i].position.x += 50 * i;
-  	// }
-
-  	player.position.x = width/2;
-  	player.position.y = height * 0.8;
-
-  	buttonX = width/2 - buttonSize-10;
-  	buttonY = height/2 - buttonSize/2;
->>>>>>> Stashed changes
+	gameManager.start();
 }
 
 

@@ -11,6 +11,7 @@ class Enemies extends Enemy
 		enemyColor = color (255, 205, 0);
 	}
 
+
 	void draw()
 	{
 		push();
