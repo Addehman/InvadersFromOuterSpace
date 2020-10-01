@@ -10,34 +10,57 @@ void start () {
 	lives = 3;
 	
 	//Create our enemies
-  	for (int i = 0; i < numberOfEnemies; i++)
-  	{
-  		
+  	// for (int i = 0; i < numberOfEnemies; i++)
+  	// {
+  	// 	enemies[i] = new Enemies();
 
-  		if (i <= firstRowOfEnemies)
-  		{
-  			enemies[i] = new Enemies();
-  			enemies[i].position.x += 50 * i;
-  		}
-  		else if (i > firstRowOfEnemies && i <= secondRowOfEnemies)
-  		{
-  			for (int j = 0; j < firstRowOfEnemies; j++)
-  			{
-  				enemies[i] = new Enemies();
-  				enemies[i].position = enemies[i].startPos;
-  			  	enemies[i].position.y = height * 0.2; 
+  	
+  	// 	if (firstRowOfEnemies)
+  	// 	{
+  	// 		enemies[i].position.x += 50 * i;
+  	// 	}
+  		// if (i <= firstRowOfEnemies)
+  		// {
+  		// 	enemies[i].position.x += 50 * i;
+  		// }
+  		// if (i > firstRowOfEnemies && i <= secondRowOfEnemies)
+  		// {
+  		// 	for (int j = 0; j < firstRowOfEnemies; j++)
+  		// 	{
+  		// 		enemies[i].position = enemies[i].startPos;
+  		// 	  	enemies[i].position.y = height * 0.2; 
 
-  			  	enemies[i].position.x += 50 * j;
-  			}
+  		// 	  	enemies[i].position.x += 50 * j;
+  		// 	}
+  		// }
+  		//}
+
+  		for (int i = 0; i < numberOfEnemies; i++)
+  		{
+  			enemies1[i] = new Enemies();
+  			enemies1[i].position.x += 50 * i;
   		}
-  	}
+
+  		for (int i = 0; i < numberOfEnemies; i++)
+  		{
+  			enemies2[i] = new Enemies();
+  			enemies2[i].position.x += 50 * i;
+  			enemies2[i].position.y = height * 0.2;
+
+  		}
+
+  		for (int i = 0; i < numberOfEnemies; i++)
+  		{
+  			enemies3[i] = new Enemies();
+  			enemies3[i].position.x += 50 * i;
+  			enemies3[i].position.y = height * 0.3;
+  		}
+  	
 
   	player.position.x = width/2;
   	player.position.y = height * 0.8;
-
-  	buttonX = width/2 - buttonSize-10;
-  	buttonY = height/2 - buttonSize/2;
 }
+
 
 	void update()
 	{
@@ -54,11 +77,19 @@ void start () {
 	  	{
 		  	//enemy.draw();
 		  	println("drawing enemy");
-		  	enemies[i].draw();
+		  	enemies1[i].draw();
+		  	enemies1[i].movement1();
+
+		  	enemies2[i].draw();
+		  	enemies2[i].movement2();
+
+		  	enemies3[i].draw();
+		  	enemies3[i].movement1();
 		  	//println(deltaTime);
 
 		  	//enemy.movement();
-		  	enemies[i].movement();
+		  	
+		  	
 
 		  	//enemies.draw();
 	  	}
@@ -81,16 +112,16 @@ if (lives <= 0) {
 				bullets[i].update();
 				bullets[i].draw(); 
 
-				for (int j = 0; j < enemies.length; j++)
+				for (int j = 0; j < enemies1.length; j++)
 				{
-					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies[j].position.x, enemies[j].position.y, enemies[j].enemySize2)) 
+					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies1[j].position.x, enemies1[j].position.y, enemies1[j].enemySize2)) 
 								{
-									explosion.renderExp(enemies[j].position.x, enemies[j].position.y);
+									explosion.renderExp(enemies1[j].position.x, enemies1[j].position.y);
 				
 									score += scoreUp; // Add score for killing enemy
 									//println("colliding");
-									enemies[j].enemySize1 = 0;
-									enemies[j].enemySize2 = 0;
+									enemies1[j].enemySize1 = 0;
+									enemies1[j].enemySize2 = 0;
 
 									// enemies[j] = null; // Does NullPointerException!
 									bullets[i] = null;

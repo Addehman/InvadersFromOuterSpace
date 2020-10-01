@@ -7,7 +7,7 @@ class Enemy
 	
 	color enemyColor = color (255, 205, 0);
 
-	boolean right = true, down1 = false, left = false, down2 = false;
+	boolean step1 = true, step2 = false, step3 = false, step4 = false;
 
 
 	Enemy ()
@@ -17,6 +17,19 @@ class Enemy
 		startPos = new PVector(width * 0.1, height * 0.1 );
 		
 		position = startPos;
+
+		// if (firstRowOfEnemies)
+		// {
+		// 	position = startPos;
+		// }
+		// else if (secondRowOfEnemies)
+		// {
+		// 	position.y = startPos.y + 50;
+		// }
+		// else if (thirdRowOfEnemies)
+		// {
+		// 	position.y = startPos.y + 100;
+		// }
 
 		//position.x = position.x + enemySize2 * 3 * numberOfEnemies;
 		
@@ -52,26 +65,25 @@ class Enemy
 	}
 
 
-	void movement () 
-	{// not sure if I should be using deltaTime here, but I want the for-loops to tick by deltaTime instead of frames.
-
+	void movement1 () 
+	{
 // Make the enemy first take some steps to the right, then some fewer down, then some steps right and loop this
+		
 
-		if (right)
+		if (step1)
 		{
-			
 			position.x += stepDistance;
 			currentSteps += stepDistance;
 			//println("right " + currentSteps);
 				
 			if (currentSteps >= rightSteps)
 			{
-				right = false;
-				down1 = true;
+				step1 = false;
+				step2 = true;
 				currentSteps = 0;
 			}
 		}
-		else if (down1)
+		else if (step2)
 		{
 			
 			position.y += stepDistance;
@@ -80,12 +92,12 @@ class Enemy
 
 			if (currentSteps >= downSteps)
 			{
-				down1 = false;
-				left = true;
+				step2 = false;
+				step3 = true;
 				currentSteps = 0;
 			}
 		}
-		else if (left)
+		else if (step3)
 		{
 			position.x -= stepDistance;
 			currentSteps += stepDistance;
@@ -94,12 +106,12 @@ class Enemy
 				
 			if (currentSteps >= leftSteps)
 			{
-				left = false;
-				down2 = true;
+				step3 = false;
+				step4 = true;
 				currentSteps = 0;
 			}
 		}
-		else if (down2)
+		else if (step4)
 		{
 			position.y += stepDistance;
 			currentSteps += stepDistance;
@@ -107,8 +119,69 @@ class Enemy
 			
 			if (currentSteps >= downSteps)
 			{
-				down2 = false;
-				right = true;
+				step4 = false;
+				step1 = true;
+				currentSteps = 0;
+			}
+		}
+	}
+
+	void movement2 () 
+	{
+// Make the enemy first take some steps to the right, then some fewer down, then some steps right and loop this
+		
+
+		if (step1)
+		{
+			position.x -= stepDistance;
+			currentSteps += stepDistance;
+			//println("left " + currentSteps);
+			
+				
+			if (currentSteps >= leftSteps)
+			{
+				step1 = false;
+				step2 = true;
+				currentSteps = 0;
+			}
+		}
+		else if (step2)
+		{
+			
+			position.y += stepDistance;
+			currentSteps += stepDistance;
+			//println("down1 " + currentSteps);
+
+			if (currentSteps >= downSteps)
+			{
+				step2 = false;
+				step3 = true;
+				currentSteps = 0;
+			}
+		}
+		else if (step3)
+		{
+			position.x += stepDistance;
+			currentSteps += stepDistance;
+			//println("right " + currentSteps);
+				
+			if (currentSteps >= rightSteps)
+			{
+				step3 = false;
+				step4 = true;
+				currentSteps = 0;
+			}
+		}
+		else if (step4)
+		{
+			position.y += stepDistance;
+			currentSteps += stepDistance;
+			//println("down2 " + currentSteps);
+			
+			if (currentSteps >= downSteps)
+			{
+				step4 = false;
+				step1 = true;
 				currentSteps = 0;
 			}
 		}
