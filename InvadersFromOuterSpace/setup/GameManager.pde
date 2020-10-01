@@ -6,6 +6,23 @@ class GameManager
 
 	}
 
+void start () {
+	lives = 3;
+	
+	//Create our enemies
+  	for (int i = 0; i < numberOfEnemies; i++)
+  	{
+  		enemies[i] = new Enemies();
+  		enemies[i].position.x += 50 * i;
+  	}
+
+  	player.position.x = width/2;
+  	player.position.y = height * 0.8;
+
+  	buttonX = width/2 - buttonSize-10;
+  	buttonY = height/2 - buttonSize/2;
+}
+
 	void update()
 	{
 //Calculate delta time
@@ -30,7 +47,10 @@ class GameManager
 		  	//enemies.draw();
 	  	}
 
-	  	
+if (lives <= 0) {
+
+	gameOver = true;
+}	  	
 
 
 // Check if the bullets are empty, if not, then spawn bullet.

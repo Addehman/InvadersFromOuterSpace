@@ -44,6 +44,13 @@ void keyPressed()
   {
   	exit ();
   }
+
+  //test keys to see if we can get restart screen
+	if (key == 'k') {
+		lives --;
+		
+	}
+
 }
 
 

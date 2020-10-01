@@ -28,11 +28,12 @@ Bullet[] bullets;
 Explosion explosion;
 StartMenu menu;
 GameManager gameManager;
+GameOver gameOverClass;
 
 PVector collider = new PVector();
 
-boolean startMenu = false, buttonOver = false, bulletDead = true;	//Don't forget to set startMenu back to true when development is over!
-
+boolean startMenu = false, bulletDead = true;	//Don't forget to set startMenu back to true when development is over!
+boolean gameOver = false;
 
 public void setup() 
 {
@@ -52,19 +53,10 @@ public void setup()
   	explosion = new Explosion(expX, expY);
   	menu = new StartMenu();
   	gameManager = new GameManager();
+  	gameOverClass = new GameOver ();
 
-//Create our enemies
-  	for (int i = 0; i < numberOfEnemies; i++)
-  	{
-  		enemies[i] = new Enemies();
-  		//enemies[i].startPos.x += 50;
-  	}
+gameManager.start();
 
-  	player.position.x = width/2;
-  	player.position.y = height * 0.8f;
-
-  	buttonX = width/2 - buttonSize-10;
-  	buttonY = height/2 - buttonSize/2;
 }
 
 
@@ -75,6 +67,9 @@ public void draw()
 	if (startMenu) 
 	{
 		menu.startmenu ();
+	}
+	else if (gameOver) {
+		gameOverClass.gameover();
 	}
 	else 
 	{
@@ -333,6 +328,23 @@ class GameManager
 
 	}
 
+public void start () {
+	lives = 3;
+	
+	//Create our enemies
+  	for (int i = 0; i < numberOfEnemies; i++)
+  	{
+  		enemies[i] = new Enemies();
+  		enemies[i].position.x += 50 * i;
+  	}
+
+  	player.position.x = width/2;
+  	player.position.y = height * 0.8f;
+
+  	buttonX = width/2 - buttonSize-10;
+  	buttonY = height/2 - buttonSize/2;
+}
+
 	public void update()
 	{
 //Calculate delta time
@@ -357,7 +369,10 @@ class GameManager
 		  	//enemies.draw();
 	  	}
 
-	  	
+if (lives <= 0) {
+
+	gameOver = true;
+}	  	
 
 
 // Check if the bullets are empty, if not, then spawn bullet.
@@ -369,48 +384,55 @@ class GameManager
 			}
 			else 
 			{
-				if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies[i].position.x, enemies[i].position.y, enemies[i].enemySize2)) 
-				{
-					explosion.renderExp(enemies[i].position.x, enemies[i].position.y);
-
-					score += scoreUp; // Add score for killing enemy
-					//println("colliding");
-					enemies[i].enemySize1 = 0;
-					enemies[i].enemySize2 = 0;
-
-					bullets[i].bulletSizeX = 0;
-					bullets[i].bulletSizeY = 0;
-
-					bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
-				}
-				else if (bullets[i].position.y < bullets[i].bulletSizeY*2)
-				{
-					bullets[i].position.y = bullets[i].bulletSizeY*2;
-					bullets[i].bulletSizeX = 0;
-					bullets[i].bulletSizeY = 0;
-
-					bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
-					//this = null;
-				}
-				// else if (hitCollision(bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies.position.x, enemies.position.y, enemies.enemySize2))
-				// {
-				// 	enemies.enemySize1 = 0;
-				// 	enemies.enemySize2 = 0;
-
-				// 	bullets[i].bulletSizeX = 0;
-				// 	bullets[i].bulletSizeY = 0;
-
-				// 	bulletDead = true;//setting the bullet to dead, so that a new shot can be fired again.
-				// }
-
 				bullets[i].update();
 				bullets[i].draw(); 
+
+				for (int j = 0; j < enemies.length; j++)
+				{
+					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies[j].position.x, enemies[j].position.y, enemies[j].enemySize2)) 
+								{
+									explosion.renderExp(enemies[j].position.x, enemies[j].position.y);
+				
+									score += scoreUp; // Add score for killing enemy
+									//println("colliding");
+									enemies[j].enemySize1 = 0;
+									enemies[j].enemySize2 = 0;
+
+									// enemies[j] = null; // Does NullPointerException!
+									bullets[i] = null;
+				
+									// bullets[i].bulletSizeX = 0;
+									// bullets[i].bulletSizeY = 0;
+				
+									bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+
+									break;
+								}
+								else if (bullets[i].position.y < bullets[i].bulletSizeY*2)
+								{
+									// bullets[i].position.y = bullets[i].bulletSizeY*2;
+									// bullets[i].bulletSizeX = 0;
+									// bullets[i].bulletSizeY = 0;
+
+									bullets[i] = null;
+				
+									bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+									
+									break;
+								}
+								// else if (hitCollision(bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies.position.x, enemies.position.y, enemies.enemySize2))
+								// {
+								// 	enemies.enemySize1 = 0;
+								// 	enemies.enemySize2 = 0;
+				
+								// 	bullets[i].bulletSizeX = 0;
+								// 	bullets[i].bulletSizeY = 0;
+				
+								// 	bulletDead = true;//setting the bullet to dead, so that a new shot can be fired again.
+								// }
+				
+				}
 			}
-		}
-
-		for (int i = 0; i < 1; i++)
-		{
-
 		}
 
 // Draw Game User Interface		
@@ -445,11 +467,19 @@ public void gameover ()
     fill(0xffFF002F);
     rect(width>>1, height>>1, buttonSize, 30, 10, 10, 10, 10);
     fill(255);
-    text("again", width>>1, height/2+4);
+    text("try again", width>>1, height/2+4);
     fill(255);
     textSize(10);
-    text("Better luck next time ", width>>1, height/2+40);
+    text("don't hate, do better m8", width>>1, height/2+40);
     popStyle();
+
+if (mousePressed && dist(mouseX, mouseY, width/2, height/2)<50)
+
+    {
+      gameOver = false;
+
+ gameManager.start();
+    }
 
 }
 
@@ -613,6 +643,13 @@ public void keyPressed()
   {
   	exit ();
   }
+
+  //test keys to see if we can get restart screen
+	if (key == 'k') {
+		lives --;
+		
+	}
+
 }
 
 

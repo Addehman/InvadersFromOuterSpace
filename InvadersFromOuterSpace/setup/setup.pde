@@ -1,4 +1,3 @@
-
 float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
@@ -13,11 +12,12 @@ Bullet[] bullets;
 Explosion explosion;
 StartMenu menu;
 GameManager gameManager;
+GameOver gameOverClass;
 
 PVector collider = new PVector();
 
-boolean startMenu = false, buttonOver = false, bulletDead = true;	//Don't forget to set startMenu back to true when development is over!
-boolean gameOver = false, buttonOver = false, bulletDead = true;
+boolean startMenu = false, bulletDead = true;	//Don't forget to set startMenu back to true when development is over!
+boolean gameOver = false;
 
 void setup() 
 {
@@ -37,19 +37,10 @@ void setup()
   	explosion = new Explosion(expX, expY);
   	menu = new StartMenu();
   	gameManager = new GameManager();
+  	gameOverClass = new GameOver ();
 
-//Create our enemies
-  	for (int i = 0; i < numberOfEnemies; i++)
-  	{
-  		enemies[i] = new Enemies();
-  		enemies[i].position.x += 50 * i;
-  	}
+gameManager.start();
 
-  	player.position.x = width/2;
-  	player.position.y = height * 0.8;
-
-  	buttonX = width/2 - buttonSize-10;
-  	buttonY = height/2 - buttonSize/2;
 }
 
 
@@ -60,6 +51,9 @@ void draw()
 	if (startMenu) 
 	{
 		menu.startmenu ();
+	}
+	else if (gameOver) {
+		gameOverClass.gameover();
 	}
 	else 
 	{
