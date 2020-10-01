@@ -42,48 +42,55 @@ class GameManager
 			}
 			else 
 			{
-				if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies[i].position.x, enemies[i].position.y, enemies[i].enemySize2)) 
-				{
-					explosion.renderExp(enemies[i].position.x, enemies[i].position.y);
-
-					score += scoreUp; // Add score for killing enemy
-					//println("colliding");
-					enemies[i].enemySize1 = 0;
-					enemies[i].enemySize2 = 0;
-
-					bullets[i].bulletSizeX = 0;
-					bullets[i].bulletSizeY = 0;
-
-					bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
-				}
-				else if (bullets[i].position.y < bullets[i].bulletSizeY*2)
-				{
-					bullets[i].position.y = bullets[i].bulletSizeY*2;
-					bullets[i].bulletSizeX = 0;
-					bullets[i].bulletSizeY = 0;
-
-					bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
-					//this = null;
-				}
-				// else if (hitCollision(bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies.position.x, enemies.position.y, enemies.enemySize2))
-				// {
-				// 	enemies.enemySize1 = 0;
-				// 	enemies.enemySize2 = 0;
-
-				// 	bullets[i].bulletSizeX = 0;
-				// 	bullets[i].bulletSizeY = 0;
-
-				// 	bulletDead = true;//setting the bullet to dead, so that a new shot can be fired again.
-				// }
-
 				bullets[i].update();
 				bullets[i].draw(); 
+
+				for (int j = 0; j < enemies.length; j++)
+				{
+					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies[j].position.x, enemies[j].position.y, enemies[j].enemySize2)) 
+								{
+									explosion.renderExp(enemies[j].position.x, enemies[j].position.y);
+				
+									score += scoreUp; // Add score for killing enemy
+									//println("colliding");
+									enemies[j].enemySize1 = 0;
+									enemies[j].enemySize2 = 0;
+
+									// enemies[j] = null; // Does NullPointerException!
+									bullets[i] = null;
+				
+									// bullets[i].bulletSizeX = 0;
+									// bullets[i].bulletSizeY = 0;
+				
+									bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+
+									break;
+								}
+								else if (bullets[i].position.y < bullets[i].bulletSizeY*2)
+								{
+									// bullets[i].position.y = bullets[i].bulletSizeY*2;
+									// bullets[i].bulletSizeX = 0;
+									// bullets[i].bulletSizeY = 0;
+
+									bullets[i] = null;
+				
+									bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+									
+									break;
+								}
+								// else if (hitCollision(bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies.position.x, enemies.position.y, enemies.enemySize2))
+								// {
+								// 	enemies.enemySize1 = 0;
+								// 	enemies.enemySize2 = 0;
+				
+								// 	bullets[i].bulletSizeX = 0;
+								// 	bullets[i].bulletSizeY = 0;
+				
+								// 	bulletDead = true;//setting the bullet to dead, so that a new shot can be fired again.
+								// }
+				
+				}
 			}
-		}
-
-		for (int i = 0; i < 1; i++)
-		{
-
 		}
 
 // Draw Game User Interface		

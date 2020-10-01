@@ -1,3 +1,4 @@
+
 float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
@@ -41,7 +42,7 @@ void setup()
   	for (int i = 0; i < numberOfEnemies; i++)
   	{
   		enemies[i] = new Enemies();
-  		//enemies[i].startPos.x += 50;
+  		enemies[i].position.x += 50 * i;
   	}
 
   	player.position.x = width/2;
