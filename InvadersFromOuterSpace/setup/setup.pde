@@ -1,8 +1,8 @@
 float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
-int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemies = 11/*, firstRowOfEnemies = 11, secondRowOfEnemies = 22, thirdRowOfEnemies = 33*/, buttonX, buttonY, buttonSize = 100;
-int lives = 3;
+int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemies = 11, buttonX, buttonY, buttonSize = 100,
+lives = 3;
 
 PFont myFont;
 

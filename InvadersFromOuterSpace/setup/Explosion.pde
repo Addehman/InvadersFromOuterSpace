@@ -37,7 +37,6 @@ class Explosion
 // setting the explosion's position, which are used to define it to be the same as the enemy's position.
     this.expX = x;
     this.expY = y;
-    imageMode(CENTER);
 
     if(counter >=0 && counter <=5){
     image(Image1,expX,expY);
