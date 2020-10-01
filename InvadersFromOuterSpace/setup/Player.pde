@@ -34,8 +34,7 @@ class Player
 	void draw()
 	{
 //Draw player
-		fill(playerColor);
-		noStroke();
-		rect(position.x, position.y, playerSize, playerSize);
+		image (Player, position.x, position.y);
+
 	}
 }

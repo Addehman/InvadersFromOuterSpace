@@ -6,6 +6,7 @@ int lives = 3;
 
 PFont myFont;
 PImage Galaxy;
+PImage Player;
 
 Player player;
 Enemy[] enemies1;
@@ -26,6 +27,8 @@ boolean gameOver = false, firstRowOfEnemies = true, secondRowOfEnemies = false, 
 void setup()
 {
 	Galaxy = loadImage ("Images/Galaxy.jpg");
+	Player = loadImage ("Images/Alien.gif");
+	Player.resize (30,25);
 	imageMode (CENTER);
 	size(640, 480);
 	rectMode(CENTER);
