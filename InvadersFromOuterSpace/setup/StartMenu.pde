@@ -23,7 +23,7 @@ class StartMenu {
     popStyle();
 
 //Check if the mouse is pressed when within 50px of the middle of the window.
-    if (mousePressed && dist(mouseX, mouseY, width/2, height/2)<50)
+    if (mousePressed && dist(mouseX, mouseY, width/2, height/2) < 50)
     //if (mousePressed && (mouseX - width/2) < 50 && (mouseY - height/2) < 15)
     {
       startMenu = false;
