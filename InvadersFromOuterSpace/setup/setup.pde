@@ -1,3 +1,4 @@
+
 float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
@@ -14,7 +15,7 @@ GameManager gameManager;
 
 PVector collider = new PVector();
 
-boolean startMenu = false, buttonOver = false, bulletDead = true;	//Don't forget to set startMenu back to true when development is over!
+boolean startMenu = false, buttonOver = false, bulletDead = true, explosionDead = true;	//Don't forget to set startMenu back to true when development is over!
 
 
 void setup() 
@@ -40,7 +41,7 @@ void setup()
   	for (int i = 0; i < numberOfEnemies; i++)
   	{
   		enemies[i] = new Enemies();
-  		//enemies[i].startPos.x += 50;
+  		enemies[i].position.x += 50 * i;
   	}
 
   	player.position.x = width/2;
