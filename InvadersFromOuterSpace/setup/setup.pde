@@ -2,6 +2,7 @@ float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
 int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemies = 5, buttonX, buttonY, buttonSize = 100;
+int lives = 3;
 
 PFont myFont;
 
@@ -15,7 +16,7 @@ GameManager gameManager;
 PVector collider = new PVector();
 
 boolean startMenu = false, buttonOver = false, bulletDead = true;	//Don't forget to set startMenu back to true when development is over!
-
+boolean gameOver = false, buttonOver = false, bulletDead = true;
 
 void setup() 
 {
