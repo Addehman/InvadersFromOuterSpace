@@ -49,8 +49,8 @@ void start () {
 
   		}
 
-  		for (int i = 0; i < numberOfEnemies; i++)
-  		{
+  	for (int i = 0; i < numberOfEnemies; i++)
+  	{
   			enemies3[i] = new Enemies();
   			enemies3[i].position.x += 50 * i;
   			enemies3[i].position.y = height * 0.3;

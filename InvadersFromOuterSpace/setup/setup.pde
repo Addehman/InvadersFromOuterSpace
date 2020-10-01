@@ -5,6 +5,7 @@ int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemies = 11/*,
 int lives = 3;
 
 PFont myFont;
+PImage Galaxy;
 
 Player player;
 Enemy[] enemies1;
@@ -21,8 +22,11 @@ PVector collider = new PVector();
 boolean startMenu = false, bulletDead = true;	//Don't forget to set startMenu back to true when development is over!
 boolean gameOver = false, firstRowOfEnemies = true, secondRowOfEnemies = false, thirdRowOfEnemies = false;
 
-void setup() 
+
+void setup()
 {
+	Galaxy = loadImage ("Images/Galaxy.jpg");
+	imageMode (CENTER);
 	size(640, 480);
 	rectMode(CENTER);
 
@@ -50,7 +54,7 @@ void setup()
 
 void draw() 
 {
-	background(0, 20, 39);
+	background(Galaxy);
 
 	if (startMenu) 
 	{
@@ -64,6 +68,3 @@ void draw()
 		gameManager.update();
 	}
 }
-
-
-
