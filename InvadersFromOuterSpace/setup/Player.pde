@@ -2,7 +2,7 @@ class Player
 {
 	PVector position = new PVector(), velocity = new PVector(); // Only need velocity.x for now, so could actually simply be using and int/float
 	
-	float playerSize = 25, playerSpeed = 10.0;
+	float playerSize = Player.width, playerSpeed = 10.0;
 
 	color playerColor = color(255);
 
@@ -35,6 +35,5 @@ class Player
 	{
 //Draw player
 		image (Player, position.x, position.y);
-
 	}
 }

@@ -11,6 +11,7 @@ class GameManager
 	void start () 
 	{
 		lives = 3;
+		score = 0;
 		
 // Create our enemies
 		for (int i = 0; i < numberOfEnemies; i++)
@@ -65,12 +66,79 @@ class GameManager
 		  	enemies3[i].movement1();
 	  	}
 
+
+// By random, the enemies1[i] will fire a bullet towards player.
+	  	randomEnemyFire1 = (int)random(11);
+	  	
+		for (int i = 0; i < enemyBullets.length; i++)
+		{
+			int randomNumber = (int)random(1000);
+
+	    	if (randomNumber % 1000 == 0 && enemyBulletDead)
+			{
+		    	enemyBullets[i] = new EnemyBullets();
+		    	enemyBullets[i].position = enemies1[randomEnemyFire1].position.copy();
+
+		    	enemyBulletDead = false;
+		    	break;
+	    	}
+	    	else 
+	    	{
+	    		continue;
+	    	}
+		}
+
+// By random, the enemies2[i] will fire a bullet towards player.
+	  	randomEnemyFire2 = (int)random(11);
+	  	
+		for (int i = 0; i < enemyBullets.length; i++)
+		{
+			int randomNumber = (int)random(1000);
+
+	    	if (randomNumber % 1000 == 0 && enemyBulletDead)
+			{
+		    	enemyBullets[i] = new EnemyBullets();
+		    	enemyBullets[i].position = enemies2[randomEnemyFire2].position.copy();
+
+		    	enemyBulletDead = false;
+		    	break;
+	    	}
+	    	else 
+	    	{
+	    		continue;
+	    	}
+		}
+
+// By random, the enemies2[i] will fire a bullet towards player.
+	  	randomEnemyFire3 = (int)random(11);
+	  	
+		for (int i = 0; i < enemyBullets.length; i++)
+		{
+			int randomNumber = (int)random(1000);
+
+	    	if (randomNumber % 1000 == 0 && enemyBulletDead)
+			{
+		    	enemyBullets[i] = new EnemyBullets();
+		    	enemyBullets[i].position = enemies3[randomEnemyFire3].position.copy();
+
+		    	enemyBulletDead = false;
+		    	break;
+	    	}
+	    	else 
+	    	{
+	    		continue;
+	    	}
+		}
+
+
 // If number of lives are equal or lower than 0, then go to game over screen.
 	  	if (lives <= 0) 
 	  	{
 			gameOver = true;
-		}	  	
+		}
 
+
+// ---------------------------------------------------------=: COLLISION SECTION :=-----------------------------------------------------//
 
 // Check if the bullets are empty, if not, then spawn bullet.
 		for (int i = 0; i < bullets.length; i++) 
@@ -175,7 +243,7 @@ class GameManager
 				}
 			}
 		}
-
+// Here we check for if the bullets of the enemies are hitting the player or if they leave the screen.
 		for (int i = 0; i < enemyBullets.length; i++)
 		{
 			if (enemyBullets[i] == null)
@@ -187,22 +255,48 @@ class GameManager
 				enemyBullets[i].update2();
 				enemyBullets[i].draw();
 
-				if (hitCollision(enemyBullets[i].position.x, enemyBullets[i].position.y, enemyBullets[i].bulletSizeY, player.position.x, player.position.y, player.playerSize))
+				if (hitCollision(enemyBullets[i].position.x, enemyBullets[i].position.y, enemyBullets[i].bulletSizeY/2, player.position.x, player.position.y, player.playerSize/2))
 				{
 					explosion.renderExp(player.position.x, player.position.y);
 
+					lives --;
+
 					enemyBullets[i] = null;
 
+					enemyBulletDead = true;
 					break;
 				}
 				else if (enemyBullets[i].position.y > height)
 				{
 					enemyBullets[i] = null;
 
+					enemyBulletDead = true;
 					break;
 				}
 			}
 		}
+
+// Checking for if the enemies have travelled all the way to the player, thus Game Over.
+		for (int i = 0; i < numberOfEnemies; i++)
+		{
+			if (enemies1[i].position.y >= player.position.y - (Player.width * 0.75))
+			{
+				lives = 0;
+				break;
+			}
+			else if (enemies2[i].position.y >= player.position.y - (Player.width * 0.75))
+			{
+				lives = 0;
+				break;
+			}
+			else if (enemies3[i].position.y >= player.position.y - (Player.width * 0.75))
+			{
+				lives = 0;
+				break;
+			}
+		}
+//---------------------------------------------------------------=: END OF COLLISION SECTION :=------------------------------------------------------------------------------//
+
 
 // Draw Game User Interface		
 		gui();
@@ -216,5 +310,24 @@ class GameManager
 		textSize(24);
 		textAlign(LEFT, TOP);
 		text(score, 5, 5);
+
+		// textAlign(CENTER, BOTTOM);
+		// text("Lives " + lives, width/2, height - 5);
+
+		if (lives == 3)
+		{
+			image(LivesIcon, width * 0.05, height - 20);
+			image(LivesIcon, width * 0.1, height - 20);
+			image(LivesIcon, width * 0.15, height - 20);
+		}
+		else if (lives == 2)
+		{
+			image(LivesIcon, width * 0.05, height - 20);
+			image(LivesIcon, width * 0.1, height - 20);
+		}
+		else if (lives == 1)
+		{
+			image(LivesIcon, width * 0.05, height - 20);
+		}
 	}
 }

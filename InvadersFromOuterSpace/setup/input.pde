@@ -6,14 +6,18 @@ PVector inputVector = new PVector();
 void keyPressed()
 {
   if (keyCode == LEFT || key == 'a')
+  {
    	moveLeft = true;
+  }
 
 
   else if (keyCode == RIGHT || key == 'd')
+  {
   	moveRight = true;
+  }
 	
-//Checking if SPACE is pressed, and if there is no bullet on screen.
-  if (key == ' ' && bulletDead)
+//Checking if SPACE or UP(arrow) is pressed, and if there is no bullet on screen.
+  if (key == ' ' && bulletDead || keyCode == UP && bulletDead)
   {
 //Find empty spot in array, create list (create bullet, at player's position)
   	for (int i = 0; i < bullets.length; i++)
@@ -45,21 +49,28 @@ void keyPressed()
   	exit ();
   }
 
-  //test keys to see if we can get restart screen
-	if (key == 'k') 
-  {
-		lives --;
-		
-	}
+// ---=: TEST-KEYS / DEBUG-KEYS SECTION :=---
 
-  if (key == 'e')
+//test keys to see if we can get restart screen
+
+  if (key == 'k')
   {
-    for (int i = 0; i < numberOfEnemyBullets; i++)
-    {
-      enemyBullets[i] = new EnemyBullets();
-      enemyBullets[i].position = enemies3[i].position.copy();
-    }
+    lives --;
   }
+
+
+  if (keyCode == DOWN)
+  {
+    for (int i = 0; i < numberOfEnemies; i++)
+      {
+        enemies1[i].position.y += 10;
+
+        enemies2[i].position.y += 10;
+
+        enemies3[i].position.y += 10;
+      }
+  }
+
 
 }
 

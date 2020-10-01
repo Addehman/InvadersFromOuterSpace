@@ -62,13 +62,26 @@ _Need Help with:
 
 2020-10-01:
 _Needs to be implemented:
-- Enemies shoot at player,
-- GUI - score/health/extra lives,
+- Enemies shoot at player,*
+- GUI - score*/health*/  HIGHSCORE,
 - win screen/emilie - if -or else,
-- Game over if stars fall down, change boolean if star below y.
+- Game over if stars fall down, change boolean if star below y.*
 
-_Need helpo with:
-- How to tell the spawning of the enemies[i] to change 
-- Why can't I nullify enemies[j] but bullets[i] in GameManager, under collision detection?
+_Need help with:*
+- How to tell the spawning of the enemies[i] to change.*
+
+
+_Questions:
+- How is it that, in GameManager from line 106-215, that the first for-loop which is according to the length of the bullets-array, 
+	which is only 1 in size, that it can go through each of the enemies, which are 33 in total (11 + 11 + 11 (3 rows))? 
+	Doesn't it go through only 1 in the loop? Shouldn't it have to be at least as many times to check times how many it's checking?
+	Is that why the next/second for-loop is checking as many times as there is enemies?
+
+- Why can't I nullify enemies[j] but bullets[i] in GameManager, under collision detection? Think this creates an issue with the bullet
+	colliding with the enemy even though it is invisible..	
+
 - How to make the button for Start Game to only be clickable on the actual button, and not able to click above it like we can now?
+
+
+##############################################################################################################################
 
