@@ -159,47 +159,57 @@ if (lives <= 0) {
 					// }
 
 
-				if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies2[j].position.x, enemies2[j].position.y, enemies2[j].enemySize2)) 
-								{
-									explosion.renderExp(enemies2[j].position.x, enemies2[j].position.y);
-				
-									score += scoreUp; // Add score for killing enemy
-									//println("colliding");
-									enemies2[j].enemySize1 = 0;
-									enemies2[j].enemySize2 = 0;
+					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies2[j].position.x, enemies2[j].position.y, enemies2[j].enemySize2)) 
+					{
+						explosion.renderExp(enemies2[j].position.x, enemies2[j].position.y);
+	
+						score += scoreUp; // Add score for killing enemy
+						//println("colliding");
+						enemies2[j].enemySize1 = 0;
+						enemies2[j].enemySize2 = 0;
 
-									// enemies[j] = null; // Does NullPointerException!
-									bullets[i] = null;
-				
-									// bullets[i].bulletSizeX = 0;
-									// bullets[i].bulletSizeY = 0;
-				
-									bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+						
+						bullets[i] = null;
+	
+	
+						bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
 
-									break;
-								}
-								else if (bullets[i].position.y < bullets[i].bulletSizeY*2)
-								{
-									// bullets[i].position.y = bullets[i].bulletSizeY*2;
-									// bullets[i].bulletSizeX = 0;
-									// bullets[i].bulletSizeY = 0;
+						break;
+					}
+					else if (bullets[i].position.y < bullets[i].bulletSizeY*2)
+					{
+						bullets[i] = null;
+	
+						bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+						
+						break;
+					}
 
-									bullets[i] = null;
-				
-									bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
-									
-									break;
-								}
-								// else if (hitCollision(bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies.position.x, enemies.position.y, enemies.enemySize2))
-								// {
-								// 	enemies.enemySize1 = 0;
-								// 	enemies.enemySize2 = 0;
-				
-								// 	bullets[i].bulletSizeX = 0;
-								// 	bullets[i].bulletSizeY = 0;
-				
-								// 	bulletDead = true;//setting the bullet to dead, so that a new shot can be fired again.
-								// }
+					if (hitCollision (bullets[i].position.x, bullets[i].position.y, bullets[i].bulletSize, enemies3[j].position.x, enemies3[j].position.y, enemies3[j].enemySize2)) 
+					{
+						explosion.renderExp(enemies3[j].position.x, enemies3[j].position.y);
+	
+						score += scoreUp; // Add score for killing enemy
+						//println("colliding");
+						enemies3[j].enemySize1 = 0;
+						enemies3[j].enemySize2 = 0;
+
+						
+						bullets[i] = null;
+	
+	
+						bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+
+						break;
+					}
+					else if (bullets[i].position.y < bullets[i].bulletSizeY*2)
+					{
+						bullets[i] = null;
+	
+						bulletDead = true; //setting the bullet to dead, so that a new shot can be fired again.
+						
+						break;
+					}
 				}
 			}
 		}
