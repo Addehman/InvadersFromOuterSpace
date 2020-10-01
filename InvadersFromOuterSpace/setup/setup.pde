@@ -43,9 +43,10 @@ void setup()
   	gameManager = new GameManager();
   	gameOverClass = new GameOver ();
 
-	gameManager.start();
-}
 
+	gameManager.start();
+
+}
 
 void draw() 
 {
