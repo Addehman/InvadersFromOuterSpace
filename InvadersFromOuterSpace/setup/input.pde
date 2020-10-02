@@ -66,6 +66,11 @@ void keyPressed()
         enemies[i].position.y += 10;
       }
   }
+
+  if (key == 'v')
+  {
+  	gameOver = true;
+  }
 //-------=: END OF TEST/DEBUG KEYS SECTION :=---------//
 
 }

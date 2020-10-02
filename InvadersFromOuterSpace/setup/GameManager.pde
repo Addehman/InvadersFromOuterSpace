@@ -84,8 +84,15 @@ class GameManager
 	  	if (lives <= 0) 
 	  	{
 			gameOver = true;
+			highscore = score; 
 		}
 
+		// Check if the enemies are all dead, by checking the amount of score
+		if (score >= scoreUp * numberOfEnemies)
+		{
+			gameOver = true;
+			highscore = score;
+		}
 
 // ---------------------------------------------------------=: COLLISION SECTION :=-----------------------------------------------------//
 
@@ -176,13 +183,8 @@ class GameManager
 				break;
 			}
 		}
-// Check if the enemies are all dead, by checking the amount of score
-		if (score >= scoreUp * numberOfEnemies)
-		{
-			gameOver = true;
-		}
-//---------------------------------------------------------------=: END OF COLLISION SECTION :=------------------------------------------------------------------------------//
 
+//---------------------------------------------------------------=: END OF COLLISION SECTION :=------------------------------------------------------------------------------//
 
 // Draw Game User Interface		
 		gui();
@@ -194,11 +196,11 @@ class GameManager
 // Draw Score at the top in the middle of the screen.
 		fill(255);
 		textSize(24);
-		textAlign(LEFT, TOP);
-		text(score, 5, 5);
+		textAlign(CENTER, TOP);
+		text(score, width / 2, 5);
 
-		// textAlign(CENTER, BOTTOM);
-		// text("Lives " + lives, width/2, height - 5);
+		textAlign(RIGHT, BOTTOM);
+		text("High Score: " + highscore, width - 10, height - 5);
 
 		if (lives == 3)
 		{
