@@ -11,11 +11,12 @@ class GameManager
 // Needed for example when we want to reset the game after game over.
 	void start () 
 	{
+// Reset the game values.
 		lives = 3;
 		score = 0;
+		row = 0; // Row-number of enemies.
 		
-// Create our enemies
-	
+// Create our enemies.
 		for (int i = 0; i < numberOfEnemies; i++)
 		{
 			if (i % 11 == 0)
@@ -26,7 +27,7 @@ class GameManager
 			enemies[i].position.x += 50 * (i % 11);
 			enemies[i].position.y = height * (row * 0.1);
 		}
-
+// Setting player start position.
 	  	player.position.x = width/2;
 	  	player.position.y = height * 0.8;
 	}
@@ -174,6 +175,11 @@ class GameManager
 				lives = 0;
 				break;
 			}
+		}
+// Check if the enemies are all dead, by checking the amount of score
+		if (score >= scoreUp * numberOfEnemies)
+		{
+			gameOver = true;
 		}
 //---------------------------------------------------------------=: END OF COLLISION SECTION :=------------------------------------------------------------------------------//
 
