@@ -2,12 +2,9 @@ class Bullet
 {
 	PVector position, velocity; //Bullet position
 
-	float bulletSizeX = 10, bulletSizeY = 15/*, bulletSize*/;
-	float bulletSpeed = 20, enemyBulletSpeed = 10;
+	float bulletSizeX = 10, bulletSizeY = 15, bulletSpeed = 20, enemyBulletSpeed = 10;
 
 	color bulletColor;
-
-	Bullet[] bullets;
 
 
 	public Bullet()
@@ -36,23 +33,8 @@ class Bullet
 
 	void draw()
 	{
-		//translate(position.x, position.y);
 		fill(bulletColor);
 		noStroke();
-		rect(position.x, position.y, bulletSizeX, bulletSizeY);
-
-		//update();
-
-		//println("Shooting");
-
-// Check for if outside of window, if yes, then nullify
-		/*if (position.x < 0 - bulletSize || position.x > width + bulletSize 
-			|| position.y < 0 - bulletSize || position.y > height + bulletSize)
-		{
-
-			this.bullet = null;
-		}*/
-// This "if" below is temporary and shall be replaced by the one above, but is testing if the "null" works.
-		
+		rect(position.x, position.y, bulletSizeX, bulletSizeY);		
 	}
 }

@@ -4,10 +4,6 @@ class Enemies extends Enemy
 	{
 		super();
 
-		// enemySize1 = 7;
-		// enemySize2 = 15;
-		
-
 		enemyColor = color (255, 205, 0);
 	}
 

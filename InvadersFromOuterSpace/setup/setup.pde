@@ -1,8 +1,8 @@
-float deltaTime, time, framerateMod = 30;
-float expX, expY;
+float deltaTime, time, framerateMod = 30, expX, expY;
 
-int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemyBullets = 11, numberOfEnemies = 33, buttonX, buttonY, buttonSize = 100,
-lives = 3, randomEnemyFire, row;
+int score, scoreUp = 10, highscore, numberOfBullets = 1, 
+numberOfEnemyBullets = 11, numberOfEnemies = 33, buttonX, 
+buttonY, buttonSize = 100, lives = 3, randomEnemyFire, row;
 
 PFont myFont;
 PImage Galaxy;
@@ -16,11 +16,12 @@ Explosion explosion;
 StartMenu menu;
 GameManager gameManager;
 GameOver gameOverClass;
+CollisionManager collisionManager;
 
 PVector collider = new PVector();
 
-boolean startMenu = true, bulletDead = true, enemyBulletDead = true;	//Don't forget to set startMenu back to true when development is over!
-boolean gameOver = false;
+boolean startMenu = true, bulletDead = true, 
+enemyBulletDead = true, gameOver = false;
 
 
 void setup()
@@ -49,26 +50,24 @@ void setup()
   	menu = new StartMenu();
   	gameManager = new GameManager();
   	gameOverClass = new GameOver ();
+  	collisionManager = new CollisionManager();
 
 
 	gameManager.start();
-
 }
+
 
 void draw() 
 {
 	background(Galaxy);
 
-	if (startMenu) 
-	{
+	if (startMenu) {
 		menu.startmenu ();
 	}
-	else if (gameOver) 
-	{
+	else if (gameOver) {
 		gameOverClass.gameover();
 	}
-	else 
-	{
+	else {
 		gameManager.update();
 	}
 }

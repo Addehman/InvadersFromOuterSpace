@@ -7,12 +7,6 @@ class Player
 	color playerColor = color(255);
 
 
-	public Player ()
-	{
-		
-	}
-
-
 	void update()
 	{
 		velocity = input();
@@ -20,12 +14,12 @@ class Player
 		position.x += velocity.x * playerSpeed;
 
 // Boundaries
-		if (position.x < 0 + playerSize/2)
-		{
+		if (position.x < 0 + playerSize/2) {
+
 			position.x = 0 + playerSize/2;
 		}
-		else if (position.x > width - playerSize/2)
-		{
+		else if (position.x > width - playerSize/2) {
+			
 			position.x = width - playerSize/2;
 		}
 	}
