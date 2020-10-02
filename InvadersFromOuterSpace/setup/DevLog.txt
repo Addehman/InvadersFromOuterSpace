@@ -85,3 +85,41 @@ _Questions:
 
 ##############################################################################################################################
 
+2020-10-02
+PRESENTATION NOTES:
+
+What we have learned:
+- Implementing pictures
+- How to add animations
+- Instantiate extensions of classes and how to move them individually & where to place them
+- How to use vertices (star).
+- To make setup cleaner by using more classes, and creating GameManager.
+- Team work makes the dream work.
+
+What was hard?
+- All of it :)
+- Instantiate the enemies and aligning them on three different rows, each row moving independently.
+- Hard time controlling where the first star should be.
+
+What are we most pleased with?
+- Instantiating the enemies in an orderly fashion, and making them fire at the player.
+- The feel and atmosphere of the game is quite pleasing.
+
+How much time did we spend?
+- We were finished Friday afternoon, with a little time to spare.
+
+Funny things that happenend? Bugs?
+- "Null Pointer Exception" time and time again.
+- Stars would fly off into space
+- Taming the first star, making it rotate in one place and not leave the screen.
+
+
+
+
+
+
+
+
+
+
+
