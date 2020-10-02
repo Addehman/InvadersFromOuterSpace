@@ -1,17 +1,15 @@
 float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
-int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemyBullets = 11, numberOfEnemies = 11, buttonX, buttonY, buttonSize = 100,
-lives = 3, randomEnemyFire1, randomEnemyFire2, randomEnemyFire3;
+int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemyBullets = 11, numberOfEnemies = 33, buttonX, buttonY, buttonSize = 100,
+lives = 3, randomEnemyFire, row = 0;
 
 PFont myFont;
 PImage Galaxy;
 PImage Player, LivesIcon;
 
 Player player;
-Enemy[] enemies1;
-Enemy[] enemies2;
-Enemy[] enemies3;
+Enemy[] enemies;
 Bullet[] bullets;
 Bullet[] enemyBullets;
 Explosion explosion;
@@ -43,9 +41,7 @@ void setup()
 //Setting frame rate with a variable
 	frameRate(framerateMod);
 
-  	enemies1 = new Enemy[numberOfEnemies];
-  	enemies2 = new Enemy[numberOfEnemies];
-  	enemies3 = new Enemy[numberOfEnemies];
+  	enemies = new Enemy[numberOfEnemies];
   	player = new Player();
   	bullets = new Bullet[numberOfBullets];
   	enemyBullets = new Bullet[numberOfEnemyBullets];

@@ -1,9 +1,9 @@
-class GameOver {
-
-void gameover ()
+class GameOver 
 {
 
- pushStyle();
+	void gameover ()
+	{
+	pushStyle();
     fill(0);
     noStroke();
     rectMode(CENTER);
@@ -40,14 +40,11 @@ else {
 	}
 	popStyle();
 
+	if (mousePressed && dist(mouseX, mouseY, width/2, height/2)<50)
+	    {
+			gameOver = false;
 
-if (mousePressed && dist(mouseX, mouseY, width/2, height/2)<50)
-
-    {
-      gameOver = false;
-
- gameManager.start();
+			gameManager.start();
 		}
-
 	}
 }

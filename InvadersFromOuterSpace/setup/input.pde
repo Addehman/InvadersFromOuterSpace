@@ -49,7 +49,7 @@ void keyPressed()
   	exit ();
   }
 
-// ---=: TEST-KEYS / DEBUG-KEYS SECTION :=---
+// ---=: TEST-KEYS / DEBUG-KEYS SECTION :=---//
 
 //test keys to see if we can get restart screen
 
@@ -63,14 +63,10 @@ void keyPressed()
   {
     for (int i = 0; i < numberOfEnemies; i++)
       {
-        enemies1[i].position.y += 10;
-
-        enemies2[i].position.y += 10;
-
-        enemies3[i].position.y += 10;
+        enemies[i].position.y += 10;
       }
   }
-
+//-------=: END OF TEST/DEBUG KEYS SECTION :=---------//
 
 }
 
