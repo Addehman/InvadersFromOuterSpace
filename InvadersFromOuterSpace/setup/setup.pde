@@ -2,7 +2,7 @@ float deltaTime, time, framerateMod = 30;
 float expX, expY;
 
 int score, scoreUp = 10, highscore, numberOfBullets = 1, numberOfEnemyBullets = 11, numberOfEnemies = 33, buttonX, buttonY, buttonSize = 100,
-lives = 3, randomEnemyFire, row = 0;
+lives = 3, randomEnemyFire, row;
 
 PFont myFont;
 PImage Galaxy;
