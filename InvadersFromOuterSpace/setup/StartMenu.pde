@@ -27,7 +27,7 @@ class StartMenu {
     //if (mousePressed && (mouseX - width/2) < 50 && (mouseY - height/2) < 15)
     {
       startMenu = false;
-      println("Starting Game and mouse is at: " + mouseX + " " + mouseY);
+      //println("Starting Game and mouse is at: " + mouseX + " " + mouseY);
     }
   }
 }
